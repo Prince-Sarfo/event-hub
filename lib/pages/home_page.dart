@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import './mydrawer.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('EventHub'),),
-      body: const Column(
-        children: [],
-      ),);
+      appBar: AppBar(
+        title: const Text('Welcome'),
+      ),
+      drawer: const MyDrawer(),
+    );
   }
 }
