@@ -5,7 +5,8 @@ import '../../components/divider.dart';
 import '../../components/button.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final void Function()? onTap;
+  const LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -98,14 +99,17 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: const Text("Don't have an account? "),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: const Text(
-                    "Register",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
+                GestureDetector(
+                  onTap: widget.onTap,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: const Text(
+                      "Register",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
                   ),
                 ),
               ],

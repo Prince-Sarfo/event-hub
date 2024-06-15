@@ -5,7 +5,6 @@ import '../intro_pages/intro_page2.dart';
 import '../intro_pages/intro_page3.dart';
 import 'home_page.dart';
 
-
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
@@ -19,6 +18,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget build(BuildContext context) {
     PageController controller = PageController();
     return Scaffold(
+    
       body: Stack(
         children: [
           // pageview to render all the pages

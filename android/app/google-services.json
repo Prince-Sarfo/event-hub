@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "733835765275",
+    "project_id": "unikonnect-3e69a",
+    "storage_bucket": "unikonnect-3e69a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733835765275:android:f59556e3adb87188bdfabe",
+        "android_client_info": {
+          "package_name": "com.example.eventhub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxBltIIsfhJYy5Fy3c1P8GnudHap6AsTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

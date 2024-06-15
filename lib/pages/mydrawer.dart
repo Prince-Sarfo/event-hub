@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'favourite_page.dart';
+import 'feed_page.dart';
 import 'home_page.dart';
-import 'profile.dart';
-import 'track_order.dart';
-
+import 'chat_page.dart';
+import 'upload_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -13,7 +12,6 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: ListView(
-          
       children: [
         const DrawerHeader(
           decoration: BoxDecoration(
@@ -41,7 +39,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text('Favorite'),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const FavouritePage();
+                    return const FeedPage();
                   }));
                 }),
             ListTile(
@@ -49,7 +47,7 @@ class MyDrawer extends StatelessWidget {
               title: const Text('Track Order'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const TrackOrderPage();
+                  return const UploadPage();
                 }));
               },
             ),
@@ -58,7 +56,7 @@ class MyDrawer extends StatelessWidget {
               title: GestureDetector(child: const Text('Profile')),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const ProfilePage();
+                  return const ChatPage();
                 }));
               },
             ),

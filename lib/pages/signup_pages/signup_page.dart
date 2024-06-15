@@ -1,3 +1,4 @@
+import 'package:eventhub/pages/signup_pages/login_page.dart';
 import 'package:eventhub/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import '../../components/google_button.dart';
@@ -5,7 +6,8 @@ import '../../components/button.dart';
 import '../../components/divider.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  final void Function()? onTap;
+  const SignUpPage({super.key, required this.onTap});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -114,14 +116,17 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: const Text("Have an account? "),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: const Text(
-                      "Log in",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue),
+                  GestureDetector(
+                    onTap: widget.onTap,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: const Text(
+                        "Log in",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
+                      ),
                     ),
                   ),
                 ],
