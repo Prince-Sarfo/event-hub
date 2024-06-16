@@ -3,7 +3,9 @@ import 'package:eventhub/pages/onboarding_page.dart';
 import 'package:eventhub/pages/chat_page.dart';
 import 'package:eventhub/pages/settings_page.dart';
 import 'package:eventhub/pages/upload_page.dart';
+import 'package:eventhub/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './mydrawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +23,13 @@ class _HomePageState extends State<HomePage> {
     ChatPage(),
     SettingsPage(),
   ];
+
+  // Sign out method
+  void signOut() {
+    // get auth service
+    final authService = Provider.of<AuthService>(context, listen: false);
+     authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
