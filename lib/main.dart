@@ -5,6 +5,7 @@ import 'package:eventhub/responsive/responsive_layout.dart';
 import 'package:eventhub/responsive/web_screen_layout.dart';
 import 'package:eventhub/screens/add_post_screen.dart';
 import 'package:eventhub/screens/login_screen.dart';
+import 'package:eventhub/screens/onboarding/onboarding_screen.dart';
 import 'package:eventhub/screens/signup_screen.dart';
 import 'package:eventhub/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,8 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               }
-              return const LoginScreen();
+              // return const LoginScreen();
+              return const OnboardingPage();
             }),
       ),
     );
