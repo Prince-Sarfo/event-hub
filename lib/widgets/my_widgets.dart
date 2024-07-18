@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+Widget myText({text, style, textAlign}) {
+  return Text(
+    text,
+    style: style,
+    textAlign: textAlign,
+    overflow: TextOverflow.ellipsis,
+  );
+}
 
 Widget myTextField(
     {text,
@@ -65,5 +75,154 @@ Widget elevatedButton({text, Function? onpress}) {
         fontWeight: FontWeight.w500,
       ),
     ),
+  );
+}
+
+Widget iconTitleContainer(
+    {text,
+    path,
+    Function? onPress,
+    bool isReadOnly = false,
+    TextInputType type = TextInputType.text,
+    TextEditingController? controller,
+    Function? validator,
+    double width = 150,
+    double height = 40}) {
+  return Container(
+    // padding: EdgeInsets.only(left: 10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(
+        width: 0.1,
+        //  color: AppColors.genderTextColor
+      ),
+    ),
+    width: width,
+    height: height,
+    child: TextFormField(
+      validator: (String? input) => validator!(input!),
+      controller: controller,
+      keyboardType: type,
+      readOnly: isReadOnly,
+      onTap: () {
+        onPress!();
+      },
+      // style: TextStyle(
+      //   fontSize: 16,
+      //   fontWeight: FontWeight.w400,
+      //   color: AppColors.genderTextColor,
+      // ),
+      decoration: InputDecoration(
+        errorStyle: const TextStyle(fontSize: 0),
+        contentPadding: const EdgeInsets.only(top: 3),
+        prefixIcon: Container(
+          child: Image.asset(
+            path,
+            cacheHeight: 18,
+          ),
+        ),
+        hintText: text,
+        hintStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          // color: AppColors.genderTextColor,
+        ),
+        border: isReadOnly
+            ? OutlineInputBorder(
+                borderSide: const BorderSide(color: Color(0xffA6A6A6)),
+                borderRadius: BorderRadius.circular(8))
+            : OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+    ),
+  );
+}
+
+Widget iconWithTitle({text, Function? func, bool? isShow = true}) {
+  return Row(
+    children: [
+      !isShow!
+          ? Container()
+          : Expanded(
+              flex: 0,
+              child: InkWell(
+                onTap: () {
+                  func!();
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: Get.width * 0.02,
+                    top: Get.height * 0.08,
+                    bottom: Get.height * 0.02,
+                  ),
+                  // alignment: Alignment.center,
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    // border: Border.all(width: 1),
+                    // borderRadius: BorderRadius.circular(50),
+                    image: DecorationImage(
+                      image: AssetImage('assets/Header.png'),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+      Expanded(
+        flex: 6,
+        child: Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(
+            top: Get.height * 0.056,
+            // left: Get.width * 0.26,
+          ),
+          child: myText(
+            text: text,
+            style: TextStyle(
+              fontSize: 23,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+      Expanded(
+        flex: 1,
+        child: Text(''),
+      )
+    ],
+  );
+}
+
+
+Widget userProfile({title, path, style}) {
+  return Row(
+    children: [
+      path.toString().isEmpty?
+      Container(
+        width: 24,
+        height: 24,
+        decoration:  BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue
+        ),
+        child: Icon(Icons.person,color: Colors.white,),
+
+      )
+          :Container(
+        width: 24,
+        height: 24,
+        decoration:  BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+                image: NetworkImage(path),
+                fit: BoxFit.fill
+            )
+        ),
+
+      ),
+      SizedBox(
+        width: 10,
+      ),
+      myText(text: title, style: style)
+    ],
   );
 }

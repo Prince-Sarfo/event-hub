@@ -103,7 +103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     authController = Get.find<AuthController>();
   }
@@ -161,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 )
                               : CircleAvatar(
-                                  radius: 46,
+                                  radius: 56,
                                   backgroundColor: Colors.white,
                                   backgroundImage: FileImage(
                                     profileImage!,
@@ -227,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _selectDate(context);
                     },
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(top: 10, left: 10),
+                      contentPadding: const EdgeInsets.only(top: 10, left: 10),
                       suffixIcon: Image.asset(
                         'assets/calender.png',
                         cacheHeight: 20,
@@ -312,7 +311,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             String imageUrl = await authController!
                                 .uploadImageToFirebaseStorage(profileImage!);
 
-                            authController!.uploadProfileData(
+                           await authController!.uploadProfileData(
                                 imageUrl,
                                 firstNameController.text.trim(),
                                 lastNameController.text.trim(),

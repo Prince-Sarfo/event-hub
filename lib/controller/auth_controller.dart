@@ -4,12 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as Path;
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // final isLoading = false.obs;
 
@@ -76,6 +76,7 @@ class AuthController extends GetxController {
         FirebaseStorage.instance.ref().child('profileImages/$fileName');
     UploadTask uploadTask = reference.putFile(image);
     TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+    // this may be the problem
     await taskSnapshot.ref.getDownloadURL().then((value) {
       imageUrl = value;
     }).catchError((e) {
@@ -86,10 +87,10 @@ class AuthController extends GetxController {
   }
 
   uploadProfileData(String imageUrl, String firstName, String lastName,
-      String mobileNumber, String dob, String gender) {
+      String mobileNumber, String dob, String gender)async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
-    FirebaseFirestore.instance.collection('users').doc(uid).set({
+   await _firestore.collection('users').doc(uid).set({
       'image': imageUrl,
       'first': firstName,
       'last': lastName,
@@ -97,7 +98,7 @@ class AuthController extends GetxController {
       'gender': gender
     }).then((value) {
       isProfileInformationLoading(false);
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() => const  HomeScreen());
     });
   }
 }
