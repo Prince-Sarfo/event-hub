@@ -9,13 +9,13 @@ import 'package:image_picker/image_picker.dart';
 import '../../controller/auth_controller.dart';
 import '../../widgets/my_widgets.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class AddProfile extends StatefulWidget {
+  const AddProfile({super.key});
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _AddProfile createState() => _AddProfile();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _AddProfile extends State<AddProfile> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<Null> _selectDate(BuildContext context) async {

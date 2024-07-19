@@ -17,6 +17,8 @@ import 'controller/data_controller.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'view/bottom_nav_bar/bottom_nav_view.dart';
+
 void main() async {
   // DevicePreview(
   //   enabled: !kReleaseMode,
@@ -40,49 +42,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // ignore: deprecated_member_use
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
-      // navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: const AddPostScreen(),
-      // home: const SignUpScreen(),
-      // home: const HomeScreen(),
-      home: const OnboardingPage(),
+        // ignore: deprecated_member_use
+        // useInheritedMediaQuery: true,
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
+        // navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
 
-      // persist user date
-      //       home: StreamBuilder(
-      //           stream: FirebaseAuth.instance.authStateChanges(),
-      //           builder: (context, snapshot) {
-      //             if (snapshot.connectionState == ConnectionState.active) {
-      //               if (snapshot.hasData) {
-      //                 return const ProfileScreen();
-      //               } else if (snapshot.hasError) {
-      //                 return Center(
-      //                   child: Text('${snapshot.error}'),
-      //                 );
-      //               }
-      //             }
-      //             if (snapshot.connectionState == ConnectionState.waiting) {
-      //               return const Center(
-      //                 child: CircularProgressIndicator(
-      //                   color: primaryColor,
-      //                 ),
-      //               );
-      //             }
-      //             return const OnboardingPage();
+        // home: const OnboardingPage(),
 
-      //             // when the app is complete I will return the onboarding page
-      //             // return const OnboardingPage();
-      //             // home: const OnboardingPage(),
-      //             // home: AddPostScreen(),
-      //           }));
-      // }
-    );
+        // persist user date
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                if (snapshot.hasData) {
+                  return const BottomBarView();
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('${snapshot.error}'),
+                  );
+                }
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
+                );
+              }
+              return const OnboardingPage();
+            }));
   }
 }

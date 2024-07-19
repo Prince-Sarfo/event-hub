@@ -14,7 +14,6 @@ Widget CustomAppBar() {
           child: myText(
               text: 'UniKonnect',
               style: const TextStyle(
-                  // color: AppColors.blue,
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
                   fontSize: 16)),

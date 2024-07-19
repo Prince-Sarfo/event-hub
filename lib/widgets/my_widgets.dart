@@ -157,7 +157,7 @@ Widget iconWithTitle({text, Function? func, bool? isShow = true}) {
                   // alignment: Alignment.center,
                   width: 30,
                   height: 30,
-                  decoration: BoxDecoration(
+                  decoration:const  BoxDecoration(
                     // border: Border.all(width: 1),
                     // borderRadius: BorderRadius.circular(50),
                     image: DecorationImage(
@@ -177,14 +177,14 @@ Widget iconWithTitle({text, Function? func, bool? isShow = true}) {
           ),
           child: myText(
             text: text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.w600,
             ),
           ),
         ),
       ),
-      Expanded(
+      const Expanded(
         flex: 1,
         child: Text(''),
       )
@@ -200,11 +200,11 @@ Widget userProfile({title, path, style}) {
       Container(
         width: 24,
         height: 24,
-        decoration:  BoxDecoration(
+        decoration:  const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.blue
         ),
-        child: Icon(Icons.person,color: Colors.white,),
+        child: const Icon(Icons.person,color: Colors.white,),
 
       )
           :Container(
@@ -219,10 +219,15 @@ Widget userProfile({title, path, style}) {
         ),
 
       ),
-      SizedBox(
+    const   SizedBox(
         width: 10,
       ),
       myText(text: title, style: style)
     ],
   );
+
+
+
+
+  
 }

@@ -4,6 +4,7 @@ import 'package:eventhub/view/home/home.dart';
 import 'package:eventhub/view/profile/profile.dart';
 import 'package:flutter/material.dart';
 
+import '../bottom_nav_bar/bottom_nav_view.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 import '../../widgets/text_field_input.dart';
@@ -40,7 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
       if (context.mounted) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) =>  HomeScreen(),
+              // builder: (context) =>  HomeScreen(),
+              builder: (context) => const BottomBarView(),
             ),
             (route) => false);
 
@@ -102,7 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 24,
                 ),
                 InkWell(
-                  onTap: loginUser,
+                  onTap: () {
+                    loginUser();
+                    FocusScope.of(context).unfocus();
+                  },
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.center,

@@ -55,12 +55,12 @@ class DataController extends GetxController{
   //   });
   // }
 
-  // getMyDocument(){
-  //   FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid)
-  //       .snapshots().listen((event) {
-  //         myDocument = event;
-  //   });
-  // }
+  getMyDocument() async{
+   await FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid)
+        .snapshots().listen((event) {
+        myDocument = event;
+    });
+  }
   
  Future<String> uploadImageToFirebase(File file)async{
     String fileUrl = '';
@@ -91,28 +91,28 @@ class DataController extends GetxController{
    return fileUrl;
  }
 
-//  Future<bool> createEvent(Map<String,dynamic> eventData)async{
-//    bool isCompleted = false;
+ Future<bool> createEvent(Map<String,dynamic> eventData)async{
+// if event is not successful its false, if its successful it will be true
+   bool isCompleted = false;
 
-//    await FirebaseFirestore.instance.collection('events')
-//    .add(eventData)
-//    .then((value) {
-//      isCompleted = true;
-//      Get.snackbar('Event Uploaded', 'Event is uploaded successfully.',
-//          colorText: Colors.white,backgroundColor: Colors.blue);
-//    }).catchError((e){
-//      isCompleted = false;
-//    });
+   await FirebaseFirestore.instance.collection('events')
+   .add(eventData)
+   .then((value) {
+     isCompleted = true;
+     Get.snackbar('Event Uploaded', 'Event is uploaded successfully.',
+         colorText: Colors.white,backgroundColor: Colors.blue);
+   }).catchError((e){
+     isCompleted = false;
+   });
 
 
-//    return isCompleted;
-//  }
+   return isCompleted;
+ }
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
-    // getMyDocument();
+    getMyDocument();
     // getUsers();
     // getEvents();
   }

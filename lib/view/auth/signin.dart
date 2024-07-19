@@ -4,6 +4,7 @@ import 'package:eventhub/view/profile/add_profile.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/auth_controller.dart';
+import '../profile/profile.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 import '../../widgets/text_field_input.dart';
@@ -52,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const ProfileScreen(),
+              builder: (context) =>  ProfileScreen(),
             ),
           );
         }
