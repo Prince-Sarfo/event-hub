@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../controller/data_controller.dart';
+import '../view/event_page/event_page_view.dart';
 import '../view/profile/add_profile.dart';
 import '../view/profile/profile.dart';
 
@@ -28,12 +29,12 @@ Widget EventsFeed() {
   DataController dataController = Get.find<DataController>();
 
   return Obx(() => dataController.isEventsLoading.value
-      ? Center(
+      ? const Center(
           child: CircularProgressIndicator(),
         )
       : ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (ctx, i) {
             return EventItem(dataController.allEvents[i]);
           },
@@ -86,11 +87,11 @@ Widget buildCard(
   return Container(
     padding: const EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
     decoration: BoxDecoration(
-      // color: AppColors.white,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(17),
       boxShadow: [
         BoxShadow(
-          color: Color(393939).withOpacity(0.15),
+          color: const Color(393939).withOpacity(0.15),
           spreadRadius: 0.1,
           blurRadius: 2,
           offset: const Offset(0, 0), // changes position of shadow
@@ -106,19 +107,16 @@ Widget buildCard(
             func!();
           },
           child: Container(
-            // child: Image.network(image!,fit: BoxFit.fill,),
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(image!), fit: BoxFit.fill),
               borderRadius: BorderRadius.circular(10),
             ),
-
             width: double.infinity,
             height: Get.width * 0.5,
-            //color: Colors.red,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Container(
@@ -129,26 +127,26 @@ Widget buildCard(
                 alignment: Alignment.center,
                 width: 41,
                 height: 24,
-                // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xffADD8E6))),
+                    border: Border.all(color: const Color(0xffADD8E6))),
                 child: Text(
                   '${dateInformation[0]}-${dateInformation[1]}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 18,
               ),
               Text(
                 text,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 onTap: () {
                   if (eventSavedByUsers
@@ -205,7 +203,7 @@ Widget buildCard(
                     }
 
                     return Container(
-                      margin: EdgeInsets.only(left: 10),
+                      margin: const EdgeInsets.only(left: 10),
                       child: CircleAvatar(
                         minRadius: 13,
                         backgroundImage: NetworkImage(image),
@@ -222,7 +220,7 @@ Widget buildCard(
         ),
         Row(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 68,
             ),
             InkWell(
@@ -272,46 +270,46 @@ Widget buildCard(
             ),
             Text(
               '${userLikes.length}',
-              style: TextStyle(
-                // color: AppColors.black,
+              style: const TextStyle(
+                color: Colors.black,
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
             ),
-         const    SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(0.5),
+              padding: const EdgeInsets.all(0.5),
               width: 17,
               height: 17,
               child: Image.asset(
                 'assets/message.png',
-                // color: AppColors.black,
+                color: Colors.black,
               ),
             ),
-           const SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text(
               '$comments',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
-                // color: AppColors.black,
+                color: Colors.black,
               ),
             ),
-           const SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Container(
-              padding: EdgeInsets.all(0.5),
+              padding: const EdgeInsets.all(0.5),
               width: 16,
               height: 16,
               child: Image.asset(
                 'assets/send.png',
                 fit: BoxFit.contain,
-                // color: AppColors.black,
+                color: Colors.black,
               ),
             ),
           ],
@@ -351,7 +349,7 @@ EventItem(DocumentSnapshot event) {
         children: [
           InkWell(
             onTap: () {
-              Get.to(() => ProfileScreen());
+              Get.to(() => const ProfileScreen());
             },
             child: CircleAvatar(
               radius: 25,
@@ -359,7 +357,7 @@ EventItem(DocumentSnapshot event) {
               backgroundImage: NetworkImage(image),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 12,
           ),
           Text(
@@ -377,9 +375,9 @@ EventItem(DocumentSnapshot event) {
           text: event.get('event_name'),
           eventData: event,
           func: () {
-            // Get.to(() => EventPageView(event,user));
+            Get.to(() => EventPageView(event, user));
           }),
-      SizedBox(
+      const SizedBox(
         height: 15,
       ),
     ],
@@ -415,17 +413,17 @@ EventsIJoined() {
           Container(
             width: 50,
             height: 50,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Image.asset(
               'assets/doneCircle.png',
               fit: BoxFit.cover,
-              // color: AppColors.blue,
+              color: Colors.blue,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
-          Text(
+          const Text(
             'You\'re all caught up!',
             style: TextStyle(
               fontSize: 18,
@@ -443,10 +441,10 @@ EventsIJoined() {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 1,
             blurRadius: 10,
-            offset: Offset(0, 1), // changes position of shadow
+            offset: const Offset(0, 1), // changes position of shadow
           ),
         ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         child: Column(
           children: [
@@ -456,12 +454,12 @@ EventsIJoined() {
                   backgroundImage: NetworkImage(userImage),
                   radius: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Text(
                   userName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -469,17 +467,17 @@ EventsIJoined() {
               ],
             ),
             Divider(
-              color: Color(0xff918F8F).withOpacity(0.2),
+              color: const Color(0xff918F8F).withOpacity(0.2),
             ),
             Obx(
               () => dataController.isEventsLoading.value
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : ListView.builder(
                       itemCount: dataController.joinedEvents.length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         String name =
                             dataController.joinedEvents[i].get('event_name');
@@ -512,15 +510,15 @@ EventsIJoined() {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
                                       border: Border.all(
-                                        color: Color(0xffADD8E6),
+                                        color: const Color(0xffADD8E6),
                                       ),
                                     ),
                                     child: Text(
                                       date,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w500,
-                                        // color: AppColors.black,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -529,7 +527,7 @@ EventsIJoined() {
                                   ),
                                   Text(
                                     name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
                                       // color: AppColors.black,
@@ -556,7 +554,7 @@ EventsIJoined() {
                                     }
 
                                     return Container(
-                                      margin: EdgeInsets.only(left: 10),
+                                      margin: const EdgeInsets.only(left: 10),
                                       child: CircleAvatar(
                                         minRadius: 13,
                                         backgroundImage: NetworkImage(image),
@@ -574,7 +572,7 @@ EventsIJoined() {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
     ],

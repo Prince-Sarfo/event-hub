@@ -15,7 +15,7 @@ class DataController extends GetxController{
   DocumentSnapshot? myDocument;
 
 
-
+// observable types
   var allUsers  = <DocumentSnapshot>[].obs;
   var filteredUsers = <DocumentSnapshot>[].obs;
   var allEvents = <DocumentSnapshot>[].obs;
@@ -113,47 +113,47 @@ class DataController extends GetxController{
   void onInit() {
     super.onInit();
     getMyDocument();
-    // getUsers();
-    // getEvents();
+    getUsers();
+    getEvents();
   }
 
 
   var isUsersLoading = false.obs;
 
-  // getUsers(){
-  //   isUsersLoading(true);
-  //   FirebaseFirestore.instance.collection('users').snapshots().listen((event) {
-  //     allUsers.value = event.docs;
-  //     filteredUsers.value.assignAll(allUsers);
-  //     isUsersLoading(false);
-  //    });
-  // }
+  getUsers() async{
+    isUsersLoading(true);
+    await FirebaseFirestore.instance.collection('users').snapshots().listen((event) {
+      allUsers.value = event.docs;
+      filteredUsers.value.assignAll(allUsers);
+      isUsersLoading(false);
+     });
+  }
 
 
-  // getEvents(){
-  //   isEventsLoading(true);
+  getEvents()async {
+    isEventsLoading(true);
 
-  //   FirebaseFirestore.instance.collection('events').snapshots().listen((event) {
-  //     allEvents.assignAll(event.docs);
-  //     filteredEvents.assignAll(event.docs);
-
-
-  //   joinedEvents.value =   allEvents.where((e){
-  //       List joinedIds = e.get('joined');
-
-  //       return joinedIds.contains(FirebaseAuth.instance.currentUser!.uid);
-
-  //     }).toList();
+   await  FirebaseFirestore.instance.collection('events').snapshots().listen((event) {
+      allEvents.assignAll(event.docs);
+      filteredEvents.assignAll(event.docs);
 
 
+    joinedEvents.value =   allEvents.where((e){
+        List joinedIds = e.get('joined');
+
+        return joinedIds.contains(FirebaseAuth.instance.currentUser!.uid);
+
+      }).toList();
 
 
 
-  //     isEventsLoading(false);
-  //    });
 
 
-  // }
+      isEventsLoading(false);
+     });
+
+
+  }
 
 
 

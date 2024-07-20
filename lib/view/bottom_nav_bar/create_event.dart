@@ -135,904 +135,917 @@ class _CreateEventViewState extends State<CreateEventView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  iconWithTitle(text: 'Create Event', func: () {}),
-                  SizedBox(
-                    height: Get.height * 0.02,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        width: 90,
-                        height: 33,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: Colors.black.withOpacity(0.6),
-                                    width: 0.6))),
-                        child: DropdownButton(
-                          isExpanded: true,
-                          underline: Container(
-                              // decoration: BoxDecoration(
-                              //   border: Border.all(
-                              //     width: 0,
-                              //     color: Colors.white,
-                              //   ),
-                              // ),
-                              ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    iconWithTitle(text: 'Create Event', func: () {}),
+                    SizedBox(
+                      height: Get.height * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          width: 90,
+                          height: 33,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: Colors.black.withOpacity(0.6),
+                                      width: 0.6))),
+                          child: DropdownButton(
+                            isExpanded: true,
+                            underline: Container(
+                                // decoration: BoxDecoration(
+                                //   border: Border.all(
+                                //     width: 0,
+                                //     color: Colors.white,
+                                //   ),
+                                // ),
+                                ),
 
-                          // borderRadius: BorderRadius.circular(10),
-                          icon: Image.asset('assets/arrowDown.png'),
-                          elevation: 16,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          value: event_type,
-                          onChanged: (String? newValue) {
-                            setState(
-                              () {
-                                event_type = newValue!;
-                              },
-                            );
-                          },
-                          items: list_item
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Container(
-                    height: Get.width * 0.6,
-                    width: Get.width * 0.9,
-                    decoration: BoxDecoration(
-                        // color: AppColors.border.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: DottedBorder(
-                      // color: Colors.border,
-                      strokeWidth: 1.5,
-                      dashPattern: const [6, 6],
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: Get.height * 0.05,
+                            // borderRadius: BorderRadius.circular(10),
+                            icon: Image.asset('assets/arrowDown.png'),
+                            elevation: 16,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
                             ),
-                            SizedBox(
-                              width: 76,
-                              height: 59,
-                              child: Image.asset('assets/uploadIcon.png'),
-                            ),
-                            myText(
-                              text: 'Click and upload image/video',
-                              style: const TextStyle(
-                                color: Colors.blue,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            elevatedButton(
-                                onpress: () async {
-                                  mediaDialog(context);
+                            value: event_type,
+                            onChanged: (String? newValue) {
+                              setState(
+                                () {
+                                  event_type = newValue!;
                                 },
-                                text: 'Upload')
-                          ],
+                              );
+                            },
+                            items: list_item
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.03,
+                    ),
+                    Container(
+                      height: Get.width * 0.6,
+                      width: Get.width * 0.9,
+                      decoration: BoxDecoration(
+                          // color: AppColors.border.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: DottedBorder(
+                        // color: Colors.border,
+                        strokeWidth: 1.5,
+                        dashPattern: const [6, 6],
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: Get.height * 0.05,
+                              ),
+                              SizedBox(
+                                width: 76,
+                                height: 59,
+                                child: Image.asset('assets/uploadIcon.png'),
+                              ),
+                              myText(
+                                text: 'Click and upload image/video',
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              elevatedButton(
+                                  onpress: () async {
+                                    mediaDialog(context);
+                                  },
+                                  text: 'Upload')
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  media.length == 0
-                      ? Container()
-                      : const SizedBox(
-                          height: 20,
-                        ),
+                    media.length == 0
+                        ? Container()
+                        : const SizedBox(
+                            height: 20,
+                          ),
 
-                  media.length == 0
-                      ? Container()
-                      : Container(
-                          width: Get.width,
-                          height: Get.width * 0.3,
-                          child: ListView.builder(
-                              itemBuilder: (ctx, i) {
-                                return media[i].isVideo!
-                                    // !isImage[i]
-                                    ? Container(
-                                        width: Get.width * 0.3,
-                                        height: Get.width * 0.3,
-                                        margin: const EdgeInsets.only(
-                                            right: 15, bottom: 10, top: 10),
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: MemoryImage(
-                                                  media[i].thumbnail!),
-                                              fit: BoxFit.fill),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(5),
-                                                  child: CircleAvatar(
-                                                    child: IconButton(
-                                                      onPressed: () {
-                                                        media.removeAt(i);
+                    media.length == 0
+                        ? Container()
+                        : Container(
+                            width: Get.width,
+                            height: Get.width * 0.3,
+                            child: ListView.builder(
+                                itemBuilder: (ctx, i) {
+                                  return media[i].isVideo!
+                                      // !isImage[i]
+                                      ? Container(
+                                          width: Get.width * 0.3,
+                                          height: Get.width * 0.3,
+                                          margin: const EdgeInsets.only(
+                                              right: 15, bottom: 10, top: 10),
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: MemoryImage(
+                                                    media[i].thumbnail!),
+                                                fit: BoxFit.fill),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    child: CircleAvatar(
+                                                      child: IconButton(
+                                                        onPressed: () {
+                                                          media.removeAt(i);
 
-                                                        // these three are commented out
-                                                        // media.removeAt(i);
-                                                        // isImage.removeAt(i);
-                                                        // thumbnail.removeAt(i);
-                                                        setState(() {});
-                                                      },
-                                                      icon: const Icon(
-                                                          Icons.close),
+                                                          // these three are commented out
+                                                          // media.removeAt(i);
+                                                          // isImage.removeAt(i);
+                                                          // thumbnail.removeAt(i);
+                                                          setState(() {});
+                                                        },
+                                                        icon: const Icon(
+                                                            Icons.close),
+                                                      ),
                                                     ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            const Align(
-                                              alignment: Alignment.center,
-                                              child: Icon(
-                                                Icons.slow_motion_video_rounded,
-                                                color: Colors.white,
-                                                size: 40,
+                                                  )
+                                                ],
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    : Container(
-                                        width: Get.width * 0.3,
-                                        height: Get.width * 0.3,
-                                        margin: const EdgeInsets.only(
-                                            right: 15, bottom: 10, top: 10),
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: FileImage(media[i].image!),
-                                              fit: BoxFit.fill),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(5),
-                                              child: CircleAvatar(
-                                                child: IconButton(
-                                                  onPressed: () {
-                                                    media.removeAt(i);
-                                                    // isImage.removeAt(i);
-                                                    // thumbnail.removeAt(i);
-                                                    setState(() {});
-                                                  },
-                                                  icon: const Icon(Icons.close),
+                                              const Align(
+                                                alignment: Alignment.center,
+                                                child: Icon(
+                                                  Icons
+                                                      .slow_motion_video_rounded,
+                                                  color: Colors.white,
+                                                  size: 40,
                                                 ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      );
-                              },
-                              itemCount: media.length,
-                              scrollDirection: Axis.horizontal),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      : Container(
+                                          width: Get.width * 0.3,
+                                          height: Get.width * 0.3,
+                                          margin: const EdgeInsets.only(
+                                              right: 15, bottom: 10, top: 10),
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image:
+                                                    FileImage(media[i].image!),
+                                                fit: BoxFit.fill),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                child: CircleAvatar(
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      media.removeAt(i);
+                                                      // isImage.removeAt(i);
+                                                      // thumbnail.removeAt(i);
+                                                      setState(() {});
+                                                    },
+                                                    icon:
+                                                        const Icon(Icons.close),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                },
+                                itemCount: media.length,
+                                scrollDirection: Axis.horizontal),
+                          ),
+
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    myTextField(
+                        bool: false,
+                        icon: 'assets/4DotIcon.png',
+                        text: 'Event Name',
+                        controller: titleController,
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Opps', "Event name is required.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+
+                          if (input.length < 3) {
+                            Get.snackbar('Opps',
+                                "Event name is should be 3+ characters.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+                          return null;
+                        }),
+
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    myTextField(
+                        bool: false,
+                        icon: 'assets/location.png',
+                        // will change the location to venue
+                        text: 'Location',
+                        controller: locationController,
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Opps', "Location is required.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+
+                          if (input.length < 3) {
+                            Get.snackbar('Opps', "Location is Invalid.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+                          return null;
+                        }),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // specify icon title container width to get rid of the overflow
+                        iconTitleContainer(
+                          isReadOnly: true,
+                          path: 'assets/Frame1.png',
+                          text: 'Date',
+                          controller: dateController,
+                          validator: (input) {
+                            if (date == null) {
+                              Get.snackbar('Opps', "Date is required.",
+                                  colorText: Colors.white,
+                                  backgroundColor: Colors.blue);
+                              return '';
+                            }
+                            return null;
+                          },
+                          onPress: () {
+                            _selectDate(context);
+                          },
                         ),
+                        iconTitleContainer(
+                            path: 'assets/#.png',
+                            text: 'Max Entries',
+                            controller: maxEntries,
+                            type: TextInputType.number,
+                            onPress: () {},
+                            validator: (String input) {
+                              if (input.isEmpty) {
+                                Get.snackbar('Opps', "Entries is required.",
+                                    colorText: Colors.white,
+                                    backgroundColor: Colors.blue);
+                                return '';
+                              }
+                              return null;
+                            }),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  myTextField(
-                      bool: false,
-                      icon: 'assets/4DotIcon.png',
-                      text: 'Event Name',
-                      controller: titleController,
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Opps', "Event name is required.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
+                    iconTitleContainer(
+                        path: 'assets/#.png',
+                        text: 'Enter tags that will go with event.',
+                        width: double.infinity,
+                        controller: tagsController,
+                        type: TextInputType.text,
+                        onPress: () {},
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Opps', "Entries is required.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+                          return null;
+                        }),
 
-                        if (input.length < 3) {
-                          Get.snackbar(
-                              'Opps', "Event name is should be 3+ characters.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
-                        return null;
-                      }),
+                    const SizedBox(
+                      height: 20,
+                    ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  myTextField(
-                      bool: false,
-                      icon: 'assets/location.png',
-                      // will change the location to venue
-                      text: 'Location',
-                      controller: locationController,
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Opps', "Location is required.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
+                    Container(
+                      height: 42,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          width: 1,
+                          //  color: AppColors.genderTextColor
+                        ),
+                      ),
+                      child: TextFormField(
+                        readOnly: true,
+                        onTap: () {
+                          Get.bottomSheet(
+                              StatefulBuilder(builder: (ctx, state) {
+                            return Container(
+                              width: double.infinity,
+                              height: Get.width * 0.6,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      topLeft: Radius.circular(10))),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Row(
+                                    // mainAxisAlignment:
+                                    //     MainAxisAlignment.spaceAround,
+                                    children: [
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 5,
+                                            ),
+                                      Expanded(
+                                          child: InkWell(
+                                        onTap: () {
+                                          selectedFrequency = -1;
 
-                        if (input.length < 3) {
-                          Get.snackbar('Opps', "Location is Invalid.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
-                        return null;
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // specify icon title container width to get rid of the overflow
-                      iconTitleContainer(
-                        isReadOnly: true,
-                        path: 'assets/Frame1.png',
-                        text: 'Date',
-                        controller: dateController,
-                        validator: (input) {
-                          if (date == null) {
-                            Get.snackbar('Opps', "Date is required.",
+                                          state(() {});
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            color: selectedFrequency == -1
+                                                ? Colors.blue
+                                                : Colors.black.withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Once",
+                                              style: TextStyle(
+                                                  color: selectedFrequency != -1
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 5,
+                                            ),
+                                      Expanded(
+                                          child: InkWell(
+                                        onTap: () {
+                                          selectedFrequency = 0;
+
+                                          state(() {});
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            color: selectedFrequency == 0
+                                                ? Colors.blue
+                                                : Colors.black.withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Daily",
+                                              style: TextStyle(
+                                                  color: selectedFrequency != 0
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 10,
+                                            ),
+                                      Expanded(
+                                          child: InkWell(
+                                        onTap: () {
+                                          state(() {
+                                            selectedFrequency = 1;
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: selectedFrequency == 1
+                                                ? Colors.blue
+                                                : Colors.black.withOpacity(0.1),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Weekly",
+                                              style: TextStyle(
+                                                  color: selectedFrequency != 1
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 10,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    // mainAxisAlignment:
+                                    //     MainAxisAlignment.spaceAround,
+                                    children: [
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 10,
+                                            ),
+                                      Expanded(
+                                          child: InkWell(
+                                        onTap: () {
+                                          state(() {
+                                            selectedFrequency = 2;
+                                          });
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: selectedFrequency == 2
+                                                ? Colors.blue
+                                                : Colors.black.withOpacity(0.1),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Monthly",
+                                              style: TextStyle(
+                                                  color: selectedFrequency != 2
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 10,
+                                            ),
+                                      Expanded(
+                                          child: InkWell(
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: selectedFrequency == 3
+                                                ? Colors.blue
+                                                : Colors.black.withOpacity(0.1),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Yearly",
+                                              style: TextStyle(
+                                                  color: selectedFrequency != 3
+                                                      ? Colors.black
+                                                      : Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          state(() {
+                                            selectedFrequency = 3;
+                                          });
+                                        },
+                                      )),
+                                      selectedFrequency == 10
+                                          ? Container()
+                                          : const SizedBox(
+                                              width: 5,
+                                            ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      MaterialButton(
+                                        minWidth: Get.width * 0.8,
+                                        onPressed: () {
+                                          frequencyEventController.text =
+                                              selectedFrequency == -1
+                                                  ? 'Once'
+                                                  : selectedFrequency == 0
+                                                      ? 'Daily'
+                                                      : selectedFrequency == 1
+                                                          ? 'Weekly'
+                                                          : selectedFrequency ==
+                                                                  2
+                                                              ? 'Monthly'
+                                                              : 'Yearly';
+                                          Get.back();
+                                        },
+                                        child: Text(
+                                          "Select",
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        color: Colors.blue,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }));
+                        },
+                        validator: (String? input) {
+                          if (input!.isEmpty) {
+                            Get.snackbar('Opps', "Frequency is required.",
                                 colorText: Colors.white,
                                 backgroundColor: Colors.blue);
                             return '';
                           }
                           return null;
                         },
-                        onPress: () {
-                          _selectDate(context);
-                        },
-                      ),
-                      iconTitleContainer(
-                          path: 'assets/#.png',
-                          text: 'Max Entries',
-                          controller: maxEntries,
-                          type: TextInputType.number,
-                          onPress: () {},
-                          validator: (String input) {
-                            if (input.isEmpty) {
-                              Get.snackbar('Opps', "Entries is required.",
-                                  colorText: Colors.white,
-                                  backgroundColor: Colors.blue);
-                              return '';
-                            }
-                            return null;
-                          }),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  iconTitleContainer(
-                      path: 'assets/#.png',
-                      text: 'Enter tags that will go with event.',
-                      width: double.infinity,
-                      controller: tagsController,
-                      type: TextInputType.text,
-                      onPress: () {},
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Opps', "Entries is required.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
-                        return null;
-                      }),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  Container(
-                    height: 42,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        width: 1,
-                        //  color: AppColors.genderTextColor
-                      ),
-                    ),
-                    child: TextFormField(
-                      readOnly: true,
-                      onTap: () {
-                        Get.bottomSheet(StatefulBuilder(builder: (ctx, state) {
-                          return Container(
-                            width: double.infinity,
-                            height: Get.width * 0.6,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    topLeft: Radius.circular(10))),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceAround,
-                                  children: [
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 5,
-                                          ),
-                                    Expanded(
-                                        child: InkWell(
-                                      onTap: () {
-                                        selectedFrequency = -1;
-
-                                        state(() {});
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          color: selectedFrequency == -1
-                                              ? Colors.blue
-                                              : Colors.black.withOpacity(0.1),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Once",
-                                            style: TextStyle(
-                                                color: selectedFrequency != -1
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 5,
-                                          ),
-                                    Expanded(
-                                        child: InkWell(
-                                      onTap: () {
-                                        selectedFrequency = 0;
-
-                                        state(() {});
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          color: selectedFrequency == 0
-                                              ? Colors.blue
-                                              : Colors.black.withOpacity(0.1),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Daily",
-                                            style: TextStyle(
-                                                color: selectedFrequency != 0
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 10,
-                                          ),
-                                    Expanded(
-                                        child: InkWell(
-                                      onTap: () {
-                                        state(() {
-                                          selectedFrequency = 1;
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: selectedFrequency == 1
-                                              ? Colors.blue
-                                              : Colors.black.withOpacity(0.1),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Weekly",
-                                            style: TextStyle(
-                                                color: selectedFrequency != 1
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 10,
-                                          ),
-                                  ],
-                                ),
-                                Row(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceAround,
-                                  children: [
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 10,
-                                          ),
-                                    Expanded(
-                                        child: InkWell(
-                                      onTap: () {
-                                        state(() {
-                                          selectedFrequency = 2;
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: selectedFrequency == 2
-                                              ? Colors.blue
-                                              : Colors.black.withOpacity(0.1),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Monthly",
-                                            style: TextStyle(
-                                                color: selectedFrequency != 2
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 10,
-                                          ),
-                                    Expanded(
-                                        child: InkWell(
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: selectedFrequency == 3
-                                              ? Colors.blue
-                                              : Colors.black.withOpacity(0.1),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Yearly",
-                                            style: TextStyle(
-                                                color: selectedFrequency != 3
-                                                    ? Colors.black
-                                                    : Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        state(() {
-                                          selectedFrequency = 3;
-                                        });
-                                      },
-                                    )),
-                                    selectedFrequency == 10
-                                        ? Container()
-                                        : const SizedBox(
-                                            width: 5,
-                                          ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    MaterialButton(
-                                      minWidth: Get.width * 0.8,
-                                      onPressed: () {
-                                        frequencyEventController.text =
-                                            selectedFrequency == -1
-                                                ? 'Once'
-                                                : selectedFrequency == 0
-                                                    ? 'Daily'
-                                                    : selectedFrequency == 1
-                                                        ? 'Weekly'
-                                                        : selectedFrequency == 2
-                                                            ? 'Monthly'
-                                                            : 'Yearly';
-                                        Get.back();
-                                      },
-                                      child: Text(
-                                        "Select",
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                      color: Colors.blue,
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        }));
-                      },
-                      validator: (String? input) {
-                        if (input!.isEmpty) {
-                          Get.snackbar('Opps', "Frequency is required.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
-                        return null;
-                      },
-                      controller: frequencyEventController,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.only(top: 3),
-                        errorStyle: const TextStyle(fontSize: 0),
-                        hintStyle: const TextStyle(
-                            // color: AppColors.genderTextColor,
-                            ),
-                        border: InputBorder.none,
-                        hintText: 'Frequency of event',
-                        prefixIcon: Image.asset(
-                          'assets/repeat.png',
-                          cacheHeight: 20,
-                        ),
-                        // border: OutlineInputBorder(
-                        //     borderRadius: BorderRadius.circular(8.0)),
-                      ),
-                    ),
-                  ),
-
-                  // myTextField(
-                  //     bool: false,
-                  //     icon: 'assets/repeat.png',
-                  //     text: 'Frequecy of event',
-                  //     controller: frequencyEventController,
-                  //     validator: (String input){
-                  //       if(input.isEmpty){
-                  //         Get.snackbar('Opps', "Frequency is required.",colorText: Colors.white,backgroundColor: Colors.blue);
-                  //         return '';
-                  //       }
-                  //     }
-                  // ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      iconTitleContainer(
-                          path: 'assets/time.png',
-                          text: 'Start Time',
-                          controller: startTimeController,
-                          isReadOnly: true,
-                          validator: (input) {},
-                          onPress: () {
-                            startTimeMethod(context);
-                          }),
-                      iconTitleContainer(
-                          path: 'assets/time.png',
-                          text: 'End Time',
-                          isReadOnly: true,
-                          controller: endTimeController,
-                          validator: (input) {},
-                          onPress: () {
-                            endTimeMethod(context);
-                          }),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      myText(
-                          text: 'Description/Instruction',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ))
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 149,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        width: 1,
-                        //  color: AppColors.genderTextColor
-                      ),
-                    ),
-                    child: TextFormField(
-                      maxLines: 5,
-                      controller: descriptionController,
-                      validator: (input) {
-                        if (input!.isEmpty) {
-                          Get.snackbar('Opps', "Description is required.",
-                              colorText: Colors.white,
-                              backgroundColor: Colors.blue);
-                          return '';
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding:
-                            EdgeInsets.only(top: 25, left: 15, right: 15),
-                        hintStyle: TextStyle(
-                            // color: AppColors.genderTextColor,
-                            ),
-                        hintText:
-                            'Write a summary and any details your invitee should know about the event...',
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(8.0),
-                        // ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.02,
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: myText(
-                      text: 'Who can invite?',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.005,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        width: 150,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            width: 1,
-                            //  color: AppColors.genderTextColor
-                          ),
-                        ),
-                        // decoration: BoxDecoration(
-                        //
-                        //   // borderRadius: BorderRadius.circular(8),
-                        //    border: Border(
-                        //         bottom: BorderSide(color: Colors.black.withOpacity(0.8),width: 0.6)
-                        //     )
-                        //
-                        // ),
-                        child: DropdownButton(
-                          isExpanded: true,
-                          underline: Container(),
-                          //borderRadius: BorderRadius.circular(10),
-                          icon: Image.asset('assets/arrowDown.png'),
-                          elevation: 16,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            // color: AppColors.black,
-                          ),
-                          value: accessModifier,
-                          onChanged: (String? newValue) {
-                            setState(
-                              () {
-                                accessModifier = newValue!;
-                              },
-                            );
-                          },
-                          items: close_list
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem(
-                              value: value,
-                              child: Text(
-                                value,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xffA6A6A6),
-                                ),
+                        controller: frequencyEventController,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(top: 3),
+                          errorStyle: const TextStyle(fontSize: 0),
+                          hintStyle: const TextStyle(
+                              // color: AppColors.genderTextColor,
                               ),
-                            );
-                          }).toList(),
+                          border: InputBorder.none,
+                          hintText: 'Frequency of event',
+                          prefixIcon: Image.asset(
+                            'assets/repeat.png',
+                            cacheHeight: 20,
+                          ),
+                          // border: OutlineInputBorder(
+                          //     borderRadius: BorderRadius.circular(8.0)),
                         ),
                       ),
-                      iconTitleContainer(
-                          path: 'assets/dollarLogo.png',
-                          text: 'price',
-                          type: TextInputType.number,
+                    ),
+
+                    // myTextField(
+                    //     bool: false,
+                    //     icon: 'assets/repeat.png',
+                    //     text: 'Frequecy of event',
+                    //     controller: frequencyEventController,
+                    //     validator: (String input){
+                    //       if(input.isEmpty){
+                    //         Get.snackbar('Opps', "Frequency is required.",colorText: Colors.white,backgroundColor: Colors.blue);
+                    //         return '';
+                    //       }
+                    //     }
+                    // ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        iconTitleContainer(
+                            path: 'assets/time.png',
+                            text: 'Start Time',
+                            controller: startTimeController,
+                            isReadOnly: true,
+                            validator: (input) {},
+                            onPress: () {
+                              startTimeMethod(context);
+                            }),
+                        iconTitleContainer(
+                            path: 'assets/time.png',
+                            text: 'End Time',
+                            isReadOnly: true,
+                            controller: endTimeController,
+                            validator: (input) {},
+                            onPress: () {
+                              endTimeMethod(context);
+                            }),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        myText(
+                            text: 'Description/Instruction',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ))
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 149,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          width: 1,
+                          //  color: AppColors.genderTextColor
+                        ),
+                      ),
+                      child: TextFormField(
+                        maxLines: 5,
+                        controller: descriptionController,
+                        validator: (input) {
+                          if (input!.isEmpty) {
+                            Get.snackbar('Opps', "Description is required.",
+                                colorText: Colors.white,
+                                backgroundColor: Colors.blue);
+                            return '';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding:
+                              EdgeInsets.only(top: 25, left: 15, right: 15),
+                          hintStyle: TextStyle(
+                              // color: AppColors.genderTextColor,
+                              ),
+                          hintText:
+                              'Write a summary and any details your invitee should know about the event...',
+                          // border: OutlineInputBorder(
+                          //   borderRadius: BorderRadius.circular(8.0),
+                          // ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.02,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: myText(
+                        text: 'Who can invite?',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.005,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          width: 150,
                           height: 40,
-                          controller: priceController,
-                          onPress: () {},
-                          validator: (String input) {
-                            if (input.isEmpty) {
-                              Get.snackbar('Opps', "Price is required.",
-                                  colorText: Colors.white,
-                                  backgroundColor: Colors.blue);
-                              return '';
-                            }
-                          })
-                    ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Obx(() => isCreatingEvent.value
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : Container(
-                          height: 42,
-                          width: double.infinity,
-                          child: elevatedButton(
-                              onpress: () async {
-                                if (!formKey.currentState!.validate()) {
-                                  return;
-                                }
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              width: 1,
+                              //  color: AppColors.genderTextColor
+                            ),
+                          ),
+                          // decoration: BoxDecoration(
+                          //
+                          //   // borderRadius: BorderRadius.circular(8),
+                          //    border: Border(
+                          //         bottom: BorderSide(color: Colors.black.withOpacity(0.8),width: 0.6)
+                          //     )
+                          //
+                          // ),
+                          child: DropdownButton(
+                            isExpanded: true,
+                            underline: Container(),
+                            //borderRadius: BorderRadius.circular(10),
+                            icon: Image.asset('assets/arrowDown.png'),
+                            elevation: 16,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              // color: AppColors.black,
+                            ),
+                            value: accessModifier,
+                            onChanged: (String? newValue) {
+                              setState(
+                                () {
+                                  accessModifier = newValue!;
+                                },
+                              );
+                            },
+                            items: close_list
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xffA6A6A6),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                        iconTitleContainer(
+                            path: 'assets/cediLogo.png',
+                            text: 'price',
+                            type: TextInputType.number,
+                            height: 40,
+                            controller: priceController,
+                            onPress: () {},
+                            validator: (String input) {
+                              if (input.isEmpty) {
+                                Get.snackbar('Opps', "Price is required.",
+                                    colorText: Colors.white,
+                                    backgroundColor: Colors.blue);
+                                return '';
+                              }
+                            })
+                      ],
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.03,
+                    ),
+                    Obx(() => isCreatingEvent.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Container(
+                            height: 42,
+                            width: double.infinity,
+                            child: elevatedButton(
+                                onpress: () async {
+                                  if (!formKey.currentState!.validate()) {
+                                    return;
+                                  }
 
-                                if (media.isEmpty) {
-                                  Get.snackbar('Opps', "Media is required.",
-                                      colorText: Colors.white,
-                                      backgroundColor: Colors.blue);
+                                  if (media.isEmpty) {
+                                    Get.snackbar('Opps', "Media is required.",
+                                        colorText: Colors.white,
+                                        backgroundColor: Colors.blue);
 
-                                  return;
-                                }
+                                    return;
+                                  }
 
-                                if (tagsController.text.isEmpty) {
-                                  Get.snackbar('Opps', "Tags is required.",
-                                      colorText: Colors.white,
-                                      backgroundColor: Colors.blue);
+                                  if (tagsController.text.isEmpty) {
+                                    Get.snackbar('Opps', "Tags is required.",
+                                        colorText: Colors.white,
+                                        backgroundColor: Colors.blue);
 
-                                  return;
-                                }
+                                    return;
+                                  }
 
-                                // means our creating event is in progress
-                                isCreatingEvent(true);
+                                  // means our creating event is in progress
+                                  isCreatingEvent(true);
 
-                                DataController dataController = Get.find();
+                                  DataController dataController = Get.find();
 
-                                if (media.isNotEmpty) {
-                                  for (int i = 0; i < media.length; i++) {
-                                    if (media[i].isVideo!) {
-                                      /// if video then first upload video file and then upload thumbnail and
-                                      /// store it in the map
+                                  if (media.isNotEmpty) {
+                                    for (int i = 0; i < media.length; i++) {
+                                      if (media[i].isVideo!) {
+                                        /// if video then first upload video file and then upload thumbnail and
+                                        /// store it in the map
 
-                                      String thumbnailUrl = await dataController
-                                          .uploadThumbnailToFirebase(
-                                              media[i].thumbnail!);
+                                        String thumbnailUrl =
+                                            await dataController
+                                                .uploadThumbnailToFirebase(
+                                                    media[i].thumbnail!);
 
-                                      String videoUrl = await dataController
-                                          .uploadImageToFirebase(
-                                              media[i].video!);
+                                        String videoUrl = await dataController
+                                            .uploadImageToFirebase(
+                                                media[i].video!);
 
-                                      mediaUrls.add({
-                                        'url': videoUrl,
-                                        'thumbnail': thumbnailUrl,
-                                        'isImage': false
-                                      });
-                                    } else {
-                                      /// just upload image
+                                        mediaUrls.add({
+                                          'url': videoUrl,
+                                          'thumbnail': thumbnailUrl,
+                                          'isImage': false
+                                        });
+                                      } else {
+                                        /// just upload image
 
-                                      String imageUrl = await dataController
-                                          .uploadImageToFirebase(
-                                              media[i].image!);
-                                      mediaUrls.add(
-                                          {'url': imageUrl, 'isImage': true});
+                                        String imageUrl = await dataController
+                                            .uploadImageToFirebase(
+                                                media[i].image!);
+                                        mediaUrls.add(
+                                            {'url': imageUrl, 'isImage': true});
+                                      }
                                     }
                                   }
-                                }
 
-                                List<String> tags =
-                                    tagsController.text.split(',');
+                                  List<String> tags =
+                                      tagsController.text.split(',');
 
-                                Map<String, dynamic> eventData = {
-                                  'event': event_type,
-                                  'event_name': titleController.text,
-                                  'location': locationController.text,
-                                  'date':
-                                      '${date!.day}-${date!.month}-${date!.year}',
-                                  'start_time': startTimeController.text,
-                                  'end_time': endTimeController.text,
-                                  'max_entries': int.parse(maxEntries.text),
-                                  'frequency_of_event':
-                                      frequencyEventController.text,
-                                  'description': descriptionController.text,
-                                  'who_can_invite': accessModifier,
-                                  'joined': [
-                                    FirebaseAuth.instance.currentUser!.uid
-                                  ],
-                                  'price': priceController.text,
-                                  'media': mediaUrls,
-                                  'uid': FirebaseAuth.instance.currentUser!.uid,
-                                  'tags': tags,
-                                  'inviter': [
-                                    FirebaseAuth.instance.currentUser!.uid
-                                  ]
-                                };
+                                  Map<String, dynamic> eventData = {
+                                    'event': event_type,
+                                    'event_name': titleController.text,
+                                    'location': locationController.text,
+                                    'date':
+                                        '${date!.day}-${date!.month}-${date!.year}',
+                                    'start_time': startTimeController.text,
+                                    'end_time': endTimeController.text,
+                                    'max_entries': int.parse(maxEntries.text),
+                                    'frequency_of_event':
+                                        frequencyEventController.text,
+                                    'description': descriptionController.text,
+                                    'who_can_invite': accessModifier,
+                                    'joined': [
+                                      FirebaseAuth.instance.currentUser!.uid
+                                    ],
+                                    'price': priceController.text,
+                                    'media': mediaUrls,
+                                    'uid':
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                    'tags': tags,
+                                    'inviter': [
+                                      FirebaseAuth.instance.currentUser!.uid
+                                    ]
+                                  };
 
-                                // await dataController.createEvent(eventData)
-                                // .then((value) {
-                                //   print("Event is done");
-                                //   isCreatingEvent(false);
-                                //   resetControllers();
-                                // });
-                              },
-                              text: 'Create Event'),
-                        )),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                ],
+                                  await dataController
+                                      .createEvent(eventData)
+                                      .then((value) {
+                                    print("Event is done");
+                                    isCreatingEvent(false);
+                                    resetControllers();
+                                  });
+                                },
+                                text: 'Create Event'),
+                          )),
+                    SizedBox(
+                      height: Get.height * 0.03,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1099,13 +1112,13 @@ class _CreateEventViewState extends State<CreateEventView> {
                       Navigator.pop(context);
                       imageDialog(context, true);
                     },
-                    icon: Icon(Icons.image)),
+                    icon: const Icon(Icons.image)),
                 IconButton(
                     onPressed: () {
                       Navigator.pop(context);
                       imageDialog(context, false);
                     },
-                    icon: Icon(Icons.slow_motion_video_outlined)),
+                    icon: const Icon(Icons.slow_motion_video_outlined)),
               ],
             ),
           );
@@ -1117,7 +1130,7 @@ class _CreateEventViewState extends State<CreateEventView> {
     showDialog(
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Media Source"),
+            title: const Text("Media Source"),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -1129,7 +1142,7 @@ class _CreateEventViewState extends State<CreateEventView> {
                         getVideoDialog(ImageSource.gallery);
                       }
                     },
-                    icon: Icon(Icons.image)),
+                    icon: const Icon(Icons.image)),
                 IconButton(
                     onPressed: () {
                       if (image) {
@@ -1138,7 +1151,7 @@ class _CreateEventViewState extends State<CreateEventView> {
                         getVideoDialog(ImageSource.camera);
                       }
                     },
-                    icon: Icon(Icons.camera_alt)),
+                    icon: const Icon(Icons.camera_alt)),
               ],
             ),
           );
