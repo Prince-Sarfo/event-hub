@@ -1,18 +1,23 @@
-import 'package:eventhub/intro_pages/loading_page.dart';
-import 'package:eventhub/pages/home_page.dart';
-import 'package:eventhub/pages/onboarding_page.dart';
-import 'package:eventhub/services/auth/auth_gate.dart';
-import 'package:eventhub/services/auth/auth_service.dart';
+import 'package:eventhub/controller/auth_controller.dart';
+import 'package:eventhub/view/home/home.dart';
+import 'package:eventhub/view/profile/add_profile.dart';
+import 'package:eventhub/view/responsive/mobile_screen_layout.dart';
+import 'package:eventhub/view/responsive/responsive_layout.dart';
+import 'package:eventhub/view/responsive/web_screen_layout.dart';
 
-import 'package:eventhub/services/auth/login_or_register.dart';
-import 'package:flutter/foundation.dart';
+import 'package:eventhub/view/onboarding/onboarding_screen.dart';
+
+import 'package:eventhub/view/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'controller/data_controller.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'view/bottom_nav_bar/bottom_nav_view.dart';
 
 void main() async {
   // DevicePreview(
@@ -23,11 +28,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Get.put(AuthController());
+  Get.put(DataController());
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthService(),
-      child: const MyApp(),
-    )
+    const MyApp(),
   );
 }
 
@@ -37,22 +41,41 @@ class MyApp extends StatelessWidget {
   // This is the root of the app
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // ignore: deprecated_member_use
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: const OnboardingPage(),
-      // home: const LoadingPage(),
-      // home: const HomePage(),
-      // home: const LoginOrRegister(),
-      home:  const AuthGate(),
-    );
+    return GetMaterialApp(
+        // ignore: deprecated_member_use
+        // useInheritedMediaQuery: true,
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
+        // navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+
+        // home: const OnboardingPage(),
+
+        // persist user date
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                if (snapshot.hasData) {
+                  return const BottomBarView();
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('${snapshot.error}'),
+                  );
+                }
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
+                );
+              }
+              return const OnboardingPage();
+            }));
   }
 }
