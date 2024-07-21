@@ -503,10 +503,9 @@ EventsIJoined() {
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 41, height: 24,
+                                    width: 41,
+                                    height: 24,
                                     alignment: Alignment.center,
-                                    // padding: EdgeInsets.symmetric(
-                                    //     horizontal: 10, vertical: 7),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
                                       border: Border.all(
@@ -530,7 +529,7 @@ EventsIJoined() {
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
-                                      // color: AppColors.black,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],

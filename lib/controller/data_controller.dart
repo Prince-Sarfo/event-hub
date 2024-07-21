@@ -26,34 +26,34 @@ class DataController extends GetxController{
 
 
   var isMessageSending = false.obs;
-  // sendMessageToFirebase({
-  //   Map<String,dynamic>? data,
-  //   String? lastMessage,
-  //   String? grouid
-  // })async{
+  sendMessageToFirebase({
+    Map<String,dynamic>? data,
+    String? lastMessage,
+    String? grouid
+  })async{
 
-  //  isMessageSending(true);
+   isMessageSending(true);
 
-  //   await FirebaseFirestore.instance.collection('chats').doc(grouid).collection('chatroom').add(data!);
-  //   await FirebaseFirestore.instance.collection('chats').doc(grouid).set({
-  //     'lastMessage': lastMessage,
-  //     'groupId': grouid,
-  //     'group': grouid!.split('-'),
-  //   },SetOptions(merge: true));
+    await FirebaseFirestore.instance.collection('chats').doc(grouid).collection('chatroom').add(data!);
+    await FirebaseFirestore.instance.collection('chats').doc(grouid).set({
+      'lastMessage': lastMessage,
+      'groupId': grouid,
+      'group': grouid!.split('-'),
+    },SetOptions(merge: true));
 
-  //   isMessageSending(false);
+    isMessageSending(false);
 
-  // }
+  }
 
 
-  // createNotification(String recUid){
-  //   FirebaseFirestore.instance.collection('notifications').doc(recUid).collection('myNotifications').add({
-  //     'message': "Send you a message.",
-  //     'image': myDocument!.get('image'),
-  //     'name': myDocument!.get('first')+ " "+ myDocument!.get('last'),
-  //     'time': DateTime.now()
-  //   });
-  // }
+  createNotification(String recUid){
+    FirebaseFirestore.instance.collection('notifications').doc(recUid).collection('myNotifications').add({
+      'message': "Send you a message.",
+      'image': myDocument!.get('image'),
+      'name': myDocument!.get('first')+ " "+ myDocument!.get('last'),
+      'time': DateTime.now()
+    });
+  }
 
   getMyDocument() async{
    await FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid)

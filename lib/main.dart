@@ -1,9 +1,7 @@
 import 'package:eventhub/controller/auth_controller.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:eventhub/view/profile/add_profile.dart';
-import 'package:eventhub/view/responsive/mobile_screen_layout.dart';
-import 'package:eventhub/view/responsive/responsive_layout.dart';
-import 'package:eventhub/view/responsive/web_screen_layout.dart';
+
 
 import 'package:eventhub/view/onboarding/onboarding_screen.dart';
 
@@ -42,18 +40,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        // ignore: deprecated_member_use
-        // useInheritedMediaQuery: true,
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
-        // navigatorKey: navigatorKey,
+      
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-
-        // home: const OnboardingPage(),
 
         // persist user date
         home: StreamBuilder(

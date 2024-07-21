@@ -161,14 +161,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              myText(
-                                text: 'may 15',
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.black,
-                                ),
-                              ),
                               const SizedBox(
                                 height: 10,
                               ),

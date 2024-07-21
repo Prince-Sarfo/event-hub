@@ -8,6 +8,7 @@ import '../home/home.dart';
 import '../profile/add_profile.dart';
 import '../profile/profile.dart';
 import 'create_event.dart';
+import 'message_screen.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView({super.key});
@@ -29,8 +30,7 @@ class _BottomBarViewState extends State<BottomBarView> {
     const HomeScreen(),
     const CommunityScreen(),
     const CreateEventView(),
-    // MessageScreen(),
-    const Text('MessageScreen'),
+    MessageScreen(),
     const ProfileScreen()
   ];
 

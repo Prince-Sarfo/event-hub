@@ -23,6 +23,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Showing all the events registered in the app
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -95,7 +96,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      hintText: 'Austin,USA',
+                      hintText: 'School of Business,KSB',
                       hintStyle: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
@@ -228,7 +229,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     eventImage,
-                                    height: 100,
+                                    height: 120,
                                     width: 100,
                                     fit: BoxFit.cover,
                                   ),
