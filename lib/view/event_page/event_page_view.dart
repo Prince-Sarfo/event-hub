@@ -23,7 +23,6 @@ class _EventPageViewState extends State<EventPageView> {
 
   List eventSavedByUsers = [];
 
-  
   @override
   Widget build(BuildContext context) {
     String image = '';
@@ -91,7 +90,6 @@ class _EventPageViewState extends State<EventPageView> {
 
     // String formattedDate = formatDate(widget.eventData.get('date'));
     //DateFormat("dd-MMM").format(d);
-
 
     return SafeArea(
       child: Scaffold(
@@ -257,7 +255,7 @@ class _EventPageViewState extends State<EventPageView> {
                   child: Row(
                     children: [
                       Flexible(
-                        child: Container(
+                        child: SizedBox(
                           width: Get.width * 0.6,
                           height: 50,
                           child: ListView.builder(
@@ -291,9 +289,8 @@ class _EventPageViewState extends State<EventPageView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          
                           Text(
-                            "\$${widget.eventData.get('price')}",
+                            "GHS ${widget.eventData.get('price')}",
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w600,
@@ -507,6 +504,4 @@ class _EventPageViewState extends State<EventPageView> {
       ),
     );
   }
-
-
 }

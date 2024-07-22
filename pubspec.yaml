@@ -36,10 +36,12 @@ dependencies:
   firebase_auth: ^5.1.0
   firebase_core: ^3.1.0
   firebase_database: ^11.0.2
+  firebase_messaging: ^15.0.3
   firebase_storage: ^12.1.0
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.1.0
+  flutter_local_notifications: ^17.2.1+2
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
   google_fonts: ^6.2.1
@@ -49,6 +51,7 @@ dependencies:
   lottie: ^3.1.2
   provider: ^6.1.2
   smooth_page_indicator: ^1.1.0
+  timeago: ^3.7.0
   uuid: ^4.4.0
   video_thumbnail: ^0.5.3
 

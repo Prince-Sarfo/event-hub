@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../controller/data_controller.dart';
 
+import '../../services/notification_service.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_widgets.dart';
 
@@ -300,7 +301,10 @@ class _ChatState extends State<Chat> {
 
                               dataController!.createNotification(widget.uid!);
 
-                              // LocalNotificationService.sendNotification(title: 'New message',message: message,token: widget.fcmToken);
+                              LocalNotificationService.sendNotification(
+                                  title: 'New message',
+                                  message: message,
+                                  token: widget.fcmToken);
                             },
                             child: SizedBox(
                               width: 41,
@@ -408,8 +412,8 @@ class _ChatState extends State<Chat> {
                     padding: const EdgeInsets.all(14),
                     child: Text(
                       message,
-                      style: const TextStyle(
-                          // color: AppColors.grey,
+                      style: TextStyle(
+                          color: AppColors.grey,
                           fontSize: 14,
                           fontWeight: FontWeight.w500),
                     ),
@@ -675,7 +679,7 @@ class _ChatState extends State<Chat> {
                   child: Text(
                     reply,
                     style: const TextStyle(
-                      // color: AppColors.grey,
+                      color: Colors.grey,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
