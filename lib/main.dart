@@ -6,6 +6,7 @@ import 'package:eventhub/view/profile/add_profile.dart';
 import 'package:eventhub/view/onboarding/onboarding_screen.dart';
 
 import 'package:eventhub/view/utils/colors.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +16,15 @@ import 'controller/data_controller.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'services/notification_service.dart';
 import 'view/bottom_nav_bar/bottom_nav_view.dart';
+
+
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print(message.data.toString());
+  print(message.notification!.toString());
+}
 
 void main() async {
   // DevicePreview(
@@ -26,6 +35,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  //  LocalNotificationService.initialize();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   Get.put(AuthController());
   Get.put(DataController());
   runApp(

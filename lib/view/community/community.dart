@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventhub/view/event_page/event_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   func: () {},
                   text: 'Community',
                 ),
+                // search bar
                 Container(
-                  height: 50,
+                  height: 45,
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
@@ -113,7 +115,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               crossAxisCount: 3,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 30,
-                              childAspectRatio: 0.53),
+                              childAspectRatio: 0.23),
                       shrinkWrap: true,
                       itemCount: dataController.filteredEvents.length,
                       physics: const NeverScrollableScrollPhysics(),
@@ -187,8 +189,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         }
 
                         return InkWell(
-                          onTap: () {},
-                          child: Container(
+                          onTap: () {
+                            Get.to(() => EventPageView(
+                                dataController.filteredEvents.value[i], doc));
+                          },
+                          child: SizedBox(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -229,7 +234,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     eventImage,
-                                    height: 120,
+                                    height: 100,
                                     width: 100,
                                     fit: BoxFit.cover,
                                   ),

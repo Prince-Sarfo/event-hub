@@ -17,6 +17,7 @@ import '../../controller/data_controller.dart';
 import '../../services/notification_service.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_widgets.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class Chat extends StatefulWidget {
   Chat({this.image, this.name, this.groupId, this.fcmToken, this.uid});
@@ -57,6 +58,8 @@ class _ChatState extends State<Chat> {
           TextPosition(offset: messageController.text.length));
   }
 
+  final loadedTime = new DateTime.now();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -91,7 +94,7 @@ class _ChatState extends State<Chat> {
                     backgroundImage: NetworkImage(widget.image!),
                   ),
             const SizedBox(
-              width: 5,
+              width: 10,
             ),
             Column(
               children: [
@@ -101,14 +104,6 @@ class _ChatState extends State<Chat> {
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.black,
-                  ),
-                ),
-                myText(
-                  text: 'sara_smith',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff918F8F),
                   ),
                 ),
               ],
@@ -301,10 +296,10 @@ class _ChatState extends State<Chat> {
 
                               dataController!.createNotification(widget.uid!);
 
-                              LocalNotificationService.sendNotification(
-                                  title: 'New message',
-                                  message: message,
-                                  token: widget.fcmToken);
+                              // LocalNotificationService.sendNotification(
+                              //     title: 'New message',
+                              //     message: message,
+                              //     token: widget.fcmToken);
                             },
                             child: SizedBox(
                               width: 41,
@@ -473,6 +468,7 @@ class _ChatState extends State<Chat> {
             ),
           ),
         ),
+        // timeago below sent message
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -480,6 +476,7 @@ class _ChatState extends State<Chat> {
               padding: const EdgeInsets.only(top: 5, right: 20),
               child: Text(
                 "Yesterday",
+                // '${timeago.format(Date.now())}',
                 style: TextStyle(
                   color: AppColors.grey,
                   fontWeight: FontWeight.w500,

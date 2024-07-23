@@ -53,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) =>  ProfileScreen(),
+              builder: (context) =>  const AddProfile(),
             ),
           );
         }

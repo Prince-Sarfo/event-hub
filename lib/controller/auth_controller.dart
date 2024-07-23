@@ -62,6 +62,16 @@ class AuthController extends GetxController {
     return res;
   }
 
+
+  void forgetPassword(String email) {
+    _auth.sendPasswordResetEmail(email: email).then((value) {
+      Get.back();
+      Get.snackbar('Email Sent', 'We have sent password reset email');
+    }).catchError((e) {
+      print("Error in sending password reset email is $e");
+    });
+  }
+
   Future<void> logOut() async {
     await _auth.signOut();
   }

@@ -73,7 +73,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
 
                     return buildTile(name,title,date,image);
                   },itemCount: data.length,shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),);
-                },stream: FirebaseFirestore.instance.collection('notifications').doc(FirebaseAuth.instance.currentUser!.uid).collection('myNotifications').snapshots(),)),
+                },stream:  FirebaseFirestore.instance.collection('notifications').doc(FirebaseAuth.instance.currentUser!.uid).collection('myNotifications').snapshots(),)),
               const SizedBox(
                 height: 10,
               ),

@@ -3,12 +3,13 @@ import 'package:eventhub/view/auth/signin.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:eventhub/view/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../widgets/my_widgets.dart';
 import '../bottom_nav_bar/bottom_nav_view.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 import '../../widgets/text_field_input.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +21,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _forgetPasswordController =
+      TextEditingController();
   bool _isLoading = false;
 
   @override
@@ -127,7 +130,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // forgot password
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.defaultDialog(
+                        title: 'Forget Password?',
+                        content: Container(
+                          width: Get.width,
+                          child: Column(
+                            children: [
+                              myTextField(
+                                  bool: false,
+                                  icon: 'assets/lock.png',
+                                  text: 'enter your email...',
+                                  controller: _forgetPasswordController),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              MaterialButton(
+                                color: Colors.blue,
+                                onPressed: ()  {
+                                  AuthController().forgetPassword(
+                                      _forgetPasswordController.text.trim());
+                                },
+                                child: Text("Sent"),
+                                minWidth: double.infinity,
+                              )
+                            ],
+                          ),
+                        ));
+                  },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

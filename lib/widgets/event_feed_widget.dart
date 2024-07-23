@@ -123,6 +123,7 @@ Widget buildCard(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
+              // date
               Container(
                 alignment: Alignment.center,
                 width: 41,
@@ -139,14 +140,16 @@ Widget buildCard(
                 ),
               ),
               const SizedBox(
-                width: 18,
+                width: 5,
               ),
+              // Event name
               Text(
                 text,
                 style:
                     const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               const Spacer(),
+              // book mark
               InkWell(
                 onTap: () {
                   if (eventSavedByUsers
