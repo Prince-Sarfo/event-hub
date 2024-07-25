@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventhub/controller/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -122,18 +123,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {},
-                        child: const Image(
-                          image: AssetImage('assets/sms.png'),
-                          width: 28,
-                          height: 25,
+                      IconButton(
+                        icon: const Icon(
+                          Icons.logout,
                         ),
-                      ),
-                      const Image(
-                        image: AssetImage('assets/menu.png'),
-                        width: 23.33,
-                        height: 19,
+                        onPressed: () {
+                          AuthController().logOut();
+                        },
                       ),
                     ],
                   ),

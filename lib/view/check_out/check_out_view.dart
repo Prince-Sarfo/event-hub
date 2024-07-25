@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import '../../services/paystack/payment_page.dart';
+import '../../services/paystack/paystack.dart';
+
 import '../../widgets/my_widgets.dart';
 
 class CheckOutView extends StatefulWidget {
@@ -335,15 +339,52 @@ class _CheckOutViewState extends State<CheckOutView> {
                   height: 50,
                   width: double.infinity,
                   child: elevatedButton(
-                    onpress: () {
+                    onpress: () async {
                       // stripe gateway
                       // if(selectedRadio == 1){
                       //   makePayment(context,amount: '${int.parse(widget.eventDoc!.get('price')) + 2}',eventId: widget.eventDoc!.id);
                       // }
 
-                      // payStack gateway
-                      // if(selectedRadio == 0){
-                      //   payStackPayment(context, amount: '${int.parse(widget.eventDoc!.get('price')) + 2}', eventId: widget.eventDoc!.id);
+// paystak
+                      // if (selectedRadio == 0) {
+                      //   Get.to(() => const PaymentPage());
+                      // }
+
+                      // var controller = WebViewController()
+                      //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                      //   ..setBackgroundColor(const Color(0x00000000))
+                      //   ..setNavigationDelegate(
+                      //     NavigationDelegate(
+                      //       onProgress: (int progress) {
+                      //         // Update loading bar.
+                      //       },
+                      //       onPageStarted: (String url) {},
+                      //       onPageFinished: (String url) {},
+                      //       onHttpError: (HttpResponseError error) {},
+                      //       onWebResourceError: (WebResourceError error) {},
+                      //       onNavigationRequest: (NavigationRequest request) {
+                      //         if (request.url
+                      //             .startsWith('https://www.youtube.com/')) {
+                      //           return NavigationDecision.prevent;
+                      //         }
+                      //         return NavigationDecision.navigate;
+                      //       },
+                      //     ),
+                      //   )
+                      //   ..loadRequest(
+                      //       Uri.parse('https://paystack.com/pay/unikonnect'));
+                      // // payStack gateway
+                      // if (selectedRadio == 0) {
+                      // FutureBuilder(
+                      //     future:  payStackPayment(context,
+                      //         amount:
+                      //             '${int.parse(widget.eventDoc!.get('price')) + 2}',
+                      //         eventId: widget.eventDoc!.id),
+                      //     builder: (BuildContext context,
+                      //         AsyncSnapshot<void> snapshot) {
+                      //       return WebViewWidget(controller: controller);
+                      //     },
+                      // );
                       // }
                     },
                     text: 'Book Now',

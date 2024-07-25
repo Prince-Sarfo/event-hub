@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../models/ticket_model.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/checkbox.dart';
 import '../../widgets/my_widgets.dart';
-import '../chat/chat_room_screen.dart';
 
 class Inviteguest extends StatefulWidget {
-  const Inviteguest({Key? key}) : super(key: key);
+  const Inviteguest({super.key});
 
   @override
   _InviteguestState createState() => _InviteguestState();
@@ -155,7 +152,7 @@ class _InviteguestState extends State<Inviteguest> {
                   ),
                 ],
               ),
-              SizedBox(
+              Container(
                 width: double.infinity,
                 height: screenheight * 0.6,
                 child: ListView.builder(
@@ -164,11 +161,11 @@ class _InviteguestState extends State<Inviteguest> {
                   itemCount: invite.length,
                   itemBuilder: (context, index) {
                     return
-                        // InkWell(
-                        //     onTap: () {
-                        //       Get.to(() => Chat());
-                        //     },
-                        //     child:
+                        //InkWell(
+                        //onTap: () {
+                        //  Get.to(() => Chat());
+                        // },
+                        //  child:
                         Container(
                       margin: const EdgeInsets.only(bottom: 10),
                       width: 57,
@@ -198,14 +195,14 @@ class _InviteguestState extends State<Inviteguest> {
                             ),
                           ),
                           const Spacer(),
-                          const ChecksBox(),
+                          ChecksBox(),
                         ],
                       ),
                     );
                   },
                 ),
               ),
-              SizedBox(
+              Container(
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(

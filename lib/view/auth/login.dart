@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               MaterialButton(
                                 color: Colors.blue,
-                                onPressed: ()  {
+                                onPressed: () {
                                   AuthController().forgetPassword(
                                       _forgetPasswordController.text.trim());
                                 },
@@ -172,36 +172,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 24,
                 ),
                 // google log in button
-                InkWell(
-                  // onTap: loginUser,
-                  child: Container(
-                    height: 45,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: !_isLoading
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/google.png"),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text("Continue with Google")
-                            ],
-                          )
-                        : const CircularProgressIndicator(
-                            color: primaryColor,
-                          ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
+                // InkWell(
+                //   // onTap: loginUser,
+                //   child: Container(
+                //     height: 45,
+                //     width: double.infinity,
+                //     alignment: Alignment.center,
+                //     padding: const EdgeInsets.symmetric(vertical: 12),
+                //     decoration: BoxDecoration(
+                //       border: Border.all(width: 1),
+                //       borderRadius: BorderRadius.circular(4),
+                //     ),
+                //     child: !_isLoading
+                //         ? Row(
+                //             mainAxisAlignment: MainAxisAlignment.center,
+                //             children: [
+                //               Image.asset("assets/google.png"),
+                //               const SizedBox(
+                //                 width: 10,
+                //               ),
+                //               const Text("Continue with Google")
+                //             ],
+                //           )
+                //         : const CircularProgressIndicator(
+                //             color: primaryColor,
+                //           ),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 12,
+                // ),
                 Flexible(
                   flex: 2,
                   child: Container(),

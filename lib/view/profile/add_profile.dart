@@ -208,7 +208,7 @@ class _AddProfile extends State<AddProfile> {
                         return '';
                       }
 
-                      if (mobileNumberController.text.length < 10) {
+                      if (mobileNumberController.text.length != 10) {
                         Get.snackbar('Warning', 'Enter valid phone number.',
                             colorText: Colors.white,
                             backgroundColor: Colors.blue);
@@ -311,7 +311,7 @@ class _AddProfile extends State<AddProfile> {
                             String imageUrl = await authController!
                                 .uploadImageToFirebaseStorage(profileImage!);
 
-                           await authController!.uploadProfileData(
+                            await authController!.uploadProfileData(
                                 imageUrl,
                                 firstNameController.text.trim(),
                                 lastNameController.text.trim(),

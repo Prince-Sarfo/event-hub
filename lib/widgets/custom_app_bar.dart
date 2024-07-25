@@ -6,10 +6,6 @@ import '../view/notificationn_screen/notification_screen.dart';
 import 'my_widgets.dart';
 
 Widget CustomAppBar() {
-  void signOut() async {
-    await AuthController().logOut();
-  }
-
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 15),
     child: Row(
@@ -25,11 +21,6 @@ Widget CustomAppBar() {
                   fontSize: 16)),
         ),
         const Spacer(),
-        IconButton(
-            onPressed: () {
-              signOut();
-            },
-            icon: Icon(Icons.logout)),
         SizedBox(
           width: 24,
           height: 22,
@@ -37,7 +28,7 @@ Widget CustomAppBar() {
             onTap: () {
               Get.to(() => UserNotificationScreen());
             },
-            child: Image.asset('assets/Frame.png'),
+            child: Image.asset('assets/Frame.png', color: Colors.blue),
           ),
         ),
         SizedBox(

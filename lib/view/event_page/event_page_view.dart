@@ -214,7 +214,7 @@ class _EventPageViewState extends State<EventPageView> {
                                 height: 2,
                               ),
                               Text(
-                                "${widget.user.get('location')}",
+                                "${widget.eventData.get('location')}",
                                 style: const TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey,

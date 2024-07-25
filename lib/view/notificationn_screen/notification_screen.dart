@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_widgets.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
+
 class UserNotificationScreen extends StatefulWidget {
   @override
   _UserNotificationScreenState createState() => _UserNotificationScreenState();
@@ -24,60 +25,71 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.only(left: 10),
-                child: iconWithTitle(func: () {
-                  Get.back();
-                }, text: 'Notifications'),
+                child: iconWithTitle(
+                    func: () {
+                      Get.back();
+                    },
+                    text: 'Notifications'),
               ),
-            
               Container(
-                color: const Color(0xffEEEEEE).withOpacity(0.9),
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: StreamBuilder<QuerySnapshot>(builder: (ctx,snap){
-                  if(!snap.hasData){
-                    return const Center(child: CircularProgressIndicator(),);
-                  }
+                  color: const Color(0xffEEEEEE).withOpacity(0.9),
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                  child: StreamBuilder<QuerySnapshot>(
+                    builder: (ctx, snap) {
+                      if (!snap.hasData) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
 
-                  final List<DocumentSnapshot> data = snap.data!.docs;
+                      final List<DocumentSnapshot> data = snap.data!.docs;
 
+                      return ListView.builder(
+                        itemBuilder: (ctx, i) {
+                          String name, title, image;
+                          DateTime date;
 
+                          try {
+                            name = data[i].get('name');
+                          } catch (e) {
+                            name = '';
+                          }
 
-                  return ListView.builder(itemBuilder: (ctx,i){
+                          try {
+                            title = data[i].get('message');
+                          } catch (e) {
+                            title = '';
+                          }
 
+                          try {
+                            image = data[i].get('image');
+                          } catch (e) {
+                            image = '';
+                          }
 
-                    String name,title,image;
-                    DateTime date;
+                          try {
+                            date = data[i].get('time').toDate();
+                          } catch (e) {
+                            date = DateTime.now();
+                          }
 
-                    try{
-                      name = data[i].get('name');
-                    }catch(e){
-                      name = '';
-                    }
-
-                     try{
-                      title = data[i].get('message');
-                    }catch(e){
-                      title = '';
-                    }
-
-                     try{
-                      image = data[i].get('image');
-                    }catch(e){
-                      image = '';
-                    }
-
-                     try{
-                      date = data[i].get('time').toDate();
-                    }catch(e){
-                      date = DateTime.now();
-                    }
-
-                    return buildTile(name,title,date,image);
-                  },itemCount: data.length,shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),);
-                },stream:  FirebaseFirestore.instance.collection('notifications').doc(FirebaseAuth.instance.currentUser!.uid).collection('myNotifications').snapshots(),)),
+                          return buildTile(name, title, date, image);
+                        },
+                        itemCount: data.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                      );
+                    },
+                    stream: FirebaseFirestore.instance
+                        .collection('notifications')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection('myNotifications')
+                        .snapshots(),
+                  )),
               const SizedBox(
                 height: 10,
               ),
-               ],
+            ],
           ),
         ),
       ),
@@ -101,6 +113,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
               ),
               Expanded(
                 child: RichText(
+                  
                   text: TextSpan(
                     children: [
                       TextSpan(
@@ -111,6 +124,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                           color: AppColors.black,
                         ),
                       ),
+                   
                       TextSpan(
                         text: title,
                         style: GoogleFonts.poppins(
