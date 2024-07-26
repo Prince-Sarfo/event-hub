@@ -341,14 +341,18 @@ class _CheckOutViewState extends State<CheckOutView> {
                   child: elevatedButton(
                     onpress: () async {
                       // stripe gateway
-                      // if(selectedRadio == 1){
-                      //   makePayment(context,amount: '${int.parse(widget.eventDoc!.get('price')) + 2}',eventId: widget.eventDoc!.id);
+                      // if(selectedRadio == 0){
+                      //   makePayment(eventId: widget.eventDoc!.id);
                       // }
 
 // paystak
                       // if (selectedRadio == 0) {
-                      //   Get.to(() => const PaymentPage());
+                      //   Get.to(() => PaymentPage(eventId: widget.eventDoc!.id));
                       // }
+
+                      if (selectedRadio == 0) {
+                        Get.to(()=>PaymentPage());
+                      }
 
                       // var controller = WebViewController()
                       //   ..setJavaScriptMode(JavaScriptMode.unrestricted)

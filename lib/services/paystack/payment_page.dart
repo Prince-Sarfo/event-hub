@@ -1,117 +1,150 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_paystack/flutter_paystack.dart';
+import 'dart:async';
 
-// class PaymentPage extends StatefulWidget {
-//   const PaymentPage({super.key});
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventhub/services/makePayment.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pay_with_paystack/pay_with_paystack.dart';
 
-//   @override
-//   State<PaymentPage> createState() => _PaymentPageState();
+class PaymentPage extends StatefulWidget {
+  PaymentPage({super.key});
+
+  DocumentSnapshot? eventDoc;
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  String publicKey = 'pk_test_79878c9dc401ab5dc178c9a4dc1c7fca4038ca32';
+
+  @override
+  void initState() {
+    super.initState();
+    final uniqueTransRef = PayWithPayStack().generateUuidV4();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Payment Page'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: amountController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the amount';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  prefix: Text('GHS'),
+                  hintText: '1000',
+                  labelText: 'Amount',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: TextFormField(
+                  controller: emailController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter the email';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    focusColor: Colors.blue,
+                    hintText: 'example@gmail.com',
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    makePayment( widget.eventDoc!.id, amount: double.parse(amountController.text), email: emailController.text);
+                    // pay with paystack
+
+// Future<void> payStackPayment(BuildContext context,
+                    // {String? amount, String? eventId}) async {
+                    // try {
+                    // final uniqueTransRef = PayWithPayStack().generateUuidV4();
+                    // final String? email = await FirebaseAuth.instance.currentUser!.email;
+
+                    // PayWithPayStack().now(
+                    //     context: context,
+                    //     secretKey:
+                    //         "sk_test_5eb6e3c82fad2eb9351cacb7982200b17fe9dd7a",
+                    //     customerEmail: emailController.text,
+                    //     reference: uniqueTransRef,
+                    //     callbackUrl: "https://paystack.com/pay/unikonnect",
+                    //      paymentChannel: ["mobile_money", "card"],
+                    //    currency: "GHS",
+                    //     amount: double.parse(amountController.text),
+                    //     transactionCompleted: () {
+                    //       // FirebaseFirestore.instance
+                    //     .collection('events')
+                    //     .doc(eventId)
+                    //     .set({
+                    //   'joined': FieldValue.arrayUnion(
+                    //       [FirebaseAuth.instance.currentUser!.uid]),
+                    //   'max_entries': FieldValue.increment(-1),
+                    // }, SetOptions(merge: true)).then((value) {
+                    //   FirebaseFirestore.instance
+                    //       .collection('booking')
+                    //       .doc(eventId)
+                    //       .set({
+                    //     'booking': FieldValue.arrayUnion([
+                    //       {
+                    //         'uid': FirebaseAuth.instance.currentUser!.uid,
+                    //         'tickets': 1
+                    //       }
+                    //     ])
+                    //   });
+                    // });
+                    // },
+                    // transactionNotCompleted: () {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //       const SnackBar(
+                    //           content: Text("Payment unsuccessfully")));
+
+                    //   Timer(const Duration(seconds: 3), () {
+                    //     Get.back();
+                    //     amountController.clear();
+                    //     emailController.clear();
+                    //   });
+                    // });
+                    // } catch (e) {}
 // }
-
-// class _PaymentPageState extends State<PaymentPage> {
-//   final _formKey = GlobalKey<FormState>();
-//   TextEditingController amountController = TextEditingController();
-//   TextEditingController emailController = TextEditingController();
-
-//   String publicKey = 'pk_test_79878c9dc401ab5dc178c9a4dc1c7fca4038ca32';
-//   final plugin = PaystackPlugin();
-//   String message = '';
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     plugin.initialize(publicKey: publicKey);
-//   }
-
-//   void makePayment() async {
-//     int price = int.parse(amountController.text) * 100;
-//     Charge charge = Charge()
-//       ..amount = price
-//       ..reference = 'ref_${DateTime.now()}'
-//       ..email = emailController.text
-//       ..currency = 'GHS';
-
-//     CheckoutResponse response = await plugin.checkout(
-//       context,
-//       method: CheckoutMethod.card,
-//       charge: charge,
-//     );
-
-//     if (response.status == true) {
-//       message = 'Payment was successful. Ref: ${response.reference}';
-//       if (mounted) {}
-//       Navigator.pushAndRemoveUntil(
-//           context,
-//           MaterialPageRoute(
-//               builder: (context) => PaymentSuccess(message: message)),
-//           ModalRoute.withName('/'));
-//     } else {
-//       print(response.message);
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Payment Page'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(12.0),
-//         child: Form(
-//           key: _formKey,
-//           child: Column(
-//             children: [
-//               TextFormField(
-//                 controller: amountController,
-//                 autovalidateMode: AutovalidateMode.onUserInteraction,
-//                 validator: (value) {
-//                   if (value == null || value.isEmpty) {
-//                     return 'Please enter the amount';
-//                   }
-//                   return null;
-//                 },
-//                 decoration: const InputDecoration(
-//                   prefix: Text('GHS'),
-//                   hintText: '1000',
-//                   labelText: 'Amount',
-//                   border: OutlineInputBorder(),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 15.0),
-//                 child: TextFormField(
-//                   controller: emailController,
-//                   autovalidateMode: AutovalidateMode.onUserInteraction,
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Please enter the email';
-//                     }
-//                     return null;
-//                   },
-//                   decoration: const InputDecoration(
-//                     hintText: 'example@gmail.com',
-//                     labelText: 'Email',
-//                     border: OutlineInputBorder(),
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 20.0),
-//                 child: ElevatedButton(
-//                   onPressed: () {
-//                     makePayment();
-//                   },
-//                   child: const Text('Make Payment'),
-//                 ),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class CheckoutResponse {
-// }
+                  },
+                  child: const Text(
+                    'Make Payment',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
