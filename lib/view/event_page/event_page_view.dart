@@ -94,6 +94,7 @@ class _EventPageViewState extends State<EventPageView> {
 
     return SafeArea(
       child: Scaffold(
+        
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -405,29 +406,29 @@ class _EventPageViewState extends State<EventPageView> {
                       ),
                       Row(
                         children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                Get.to(() => const Inviteguest());
-                              },
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(13),
-                                    color: Colors.blue.withOpacity(0.9)),
-                                child: const Center(
-                                  child: Text(
-                                    "invite Friends",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Expanded(
+                          //   child: InkWell(
+                          //     // onTap: () {
+                          //     //   Get.to(() => const Inviteguest());
+                          //     // },
+                          //     child: Container(
+                          //       height: 50,
+                          //       decoration: BoxDecoration(
+                          //           borderRadius: BorderRadius.circular(13),
+                          //           color: Colors.blue.withOpacity(0.9)),
+                          //       child: const Center(
+                          //         child: Text(
+                          //           "invite Friends",
+                          //           style: TextStyle(
+                          //             color: Colors.white,
+                          //             fontWeight: FontWeight.w500,
+                          //             fontSize: 16,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           const SizedBox(
                             width: 10,
                           ),

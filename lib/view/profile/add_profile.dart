@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../controller/auth_controller.dart';
+import '../../utils/app_colors.dart';
 import '../../widgets/my_widgets.dart';
 
 class AddProfile extends StatefulWidget {
@@ -243,12 +244,12 @@ class _AddProfile extends State<AddProfile> {
                   children: [
                     Expanded(
                         child: RadioListTile(
-                      title: const Text(
+                      title: Text(
                         'Male',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
-                          // color: AppColors.genderTextColor,
+                          color: AppColors.genderTextColor,
                         ),
                       ),
                       value: 0,
@@ -259,12 +260,12 @@ class _AddProfile extends State<AddProfile> {
                     )),
                     Expanded(
                       child: RadioListTile(
-                        title: const Text(
+                        title: Text(
                           'Female',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
-                            // color: AppColors.genderTextColor,
+                            color: AppColors.genderTextColor,
                           ),
                         ),
                         value: 1,

@@ -81,59 +81,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     makePayment(eventId: widget.eventDoc!.id, amount: double.parse(amountController.text), email: emailController.text);
-                    // pay with paystack
-
-// Future<void> payStackPayment(BuildContext context,
-                    // {String? amount, String? eventId}) async {
-                    // try {
-                    // final uniqueTransRef = PayWithPayStack().generateUuidV4();
-                    // final String? email = await FirebaseAuth.instance.currentUser!.email;
-
-                    // PayWithPayStack().now(
-                    //     context: context,
-                    //     secretKey:
-                    //         "sk_test_5eb6e3c82fad2eb9351cacb7982200b17fe9dd7a",
-                    //     customerEmail: emailController.text,
-                    //     reference: uniqueTransRef,
-                    //     callbackUrl: "https://paystack.com/pay/unikonnect",
-                    //      paymentChannel: ["mobile_money", "card"],
-                    //    currency: "GHS",
-                    //     amount: double.parse(amountController.text),
-                    //     transactionCompleted: () {
-                    //       // FirebaseFirestore.instance
-                    //     .collection('events')
-                    //     .doc(eventId)
-                    //     .set({
-                    //   'joined': FieldValue.arrayUnion(
-                    //       [FirebaseAuth.instance.currentUser!.uid]),
-                    //   'max_entries': FieldValue.increment(-1),
-                    // }, SetOptions(merge: true)).then((value) {
-                    //   FirebaseFirestore.instance
-                    //       .collection('booking')
-                    //       .doc(eventId)
-                    //       .set({
-                    //     'booking': FieldValue.arrayUnion([
-                    //       {
-                    //         'uid': FirebaseAuth.instance.currentUser!.uid,
-                    //         'tickets': 1
-                    //       }
-                    //     ])
-                    //   });
-                    // });
-                    // },
-                    // transactionNotCompleted: () {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //       const SnackBar(
-                    //           content: Text("Payment unsuccessfully")));
-
-                    //   Timer(const Duration(seconds: 3), () {
-                    //     Get.back();
-                    //     amountController.clear();
-                    //     emailController.clear();
-                    //   });
-                    // });
-                    // } catch (e) {}
-// }
+                  
                   },
                   child: const Text(
                     'Make Payment',

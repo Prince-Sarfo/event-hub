@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../services/paystack/payment_page.dart';
-import '../../services/paystack/paystack.dart';
 
 import '../../widgets/my_widgets.dart';
 
@@ -258,37 +257,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      width: 48,
-                      height: 34,
-                      child: Image.asset(
-                        'assets/strip.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    myText(
-                      text: 'Stripe',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    Radio(
-                      value: 1,
-                      groupValue: selectedRadio,
-                      onChanged: (int? value) {
-                        setState(() {
-                          setSelectedRadio(value!);
-                        });
-                      },
-                      activeColor: Colors.blue,
-                    ),
-                  ],
-                ),
                 const Divider(),
                 Row(
                   children: [
@@ -340,56 +308,10 @@ class _CheckOutViewState extends State<CheckOutView> {
                   width: double.infinity,
                   child: elevatedButton(
                     onpress: () async {
-                      // stripe gateway
-                      // if(selectedRadio == 0){
-                      //   makePayment(eventId: widget.eventDoc!.id);
-                      // }
-
-// paystak
-                      // if (selectedRadio == 0) {
-                      //   Get.to(() => PaymentPage(eventId: widget.eventDoc!.id));
-                      // }
-
+                      // momo payment gateway
                       if (selectedRadio == 0) {
-                        Get.to(()=>PaymentPage());
+                        Get.to(() => PaymentPage());
                       }
-
-                      // var controller = WebViewController()
-                      //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                      //   ..setBackgroundColor(const Color(0x00000000))
-                      //   ..setNavigationDelegate(
-                      //     NavigationDelegate(
-                      //       onProgress: (int progress) {
-                      //         // Update loading bar.
-                      //       },
-                      //       onPageStarted: (String url) {},
-                      //       onPageFinished: (String url) {},
-                      //       onHttpError: (HttpResponseError error) {},
-                      //       onWebResourceError: (WebResourceError error) {},
-                      //       onNavigationRequest: (NavigationRequest request) {
-                      //         if (request.url
-                      //             .startsWith('https://www.youtube.com/')) {
-                      //           return NavigationDecision.prevent;
-                      //         }
-                      //         return NavigationDecision.navigate;
-                      //       },
-                      //     ),
-                      //   )
-                      //   ..loadRequest(
-                      //       Uri.parse('https://paystack.com/pay/unikonnect'));
-                      // // payStack gateway
-                      // if (selectedRadio == 0) {
-                      // FutureBuilder(
-                      //     future:  payStackPayment(context,
-                      //         amount:
-                      //             '${int.parse(widget.eventDoc!.get('price')) + 2}',
-                      //         eventId: widget.eventDoc!.id),
-                      //     builder: (BuildContext context,
-                      //         AsyncSnapshot<void> snapshot) {
-                      //       return WebViewWidget(controller: controller);
-                      //     },
-                      // );
-                      // }
                     },
                     text: 'Book Now',
                   ),
