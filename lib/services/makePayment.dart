@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import 'package:pay_with_paystack/pay_with_paystack.dart';
 
 Future<void> makePayment(
-    {String? eventId, double? amount, String? email, BuildContext context}) async {
+    {String? eventId, double? amount, String? email}) async {
   DocumentSnapshot? eventDoc;
- 
+  var context;
   final uniqueTransRef = PayWithPayStack().generateUuidV4();
 
   await PayWithPayStack().now(

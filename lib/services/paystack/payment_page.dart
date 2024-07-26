@@ -80,7 +80,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 padding: const EdgeInsets.only(top: 20.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    makePayment( widget.eventDoc!.id, amount: double.parse(amountController.text), email: emailController.text);
+                    makePayment(eventId: widget.eventDoc!.id, amount: double.parse(amountController.text), email: emailController.text);
                     // pay with paystack
 
 // Future<void> payStackPayment(BuildContext context,
