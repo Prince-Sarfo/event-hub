@@ -62,6 +62,16 @@ class AuthController extends GetxController {
     return res;
   }
 
+  void forgetPassword(String email) {
+    _auth.sendPasswordResetEmail(email: email).then((value) {
+      Get.back();
+      Get.snackbar('Email Sent', 'We have sent password reset email');
+    }).catchError((e) {
+      // print("Error in sending password reset email is $e");
+      Get.snackbar('An error occurred', '${e}');
+    });
+  }
+
   Future<void> logOut() async {
     await _auth.signOut();
   }
@@ -87,10 +97,10 @@ class AuthController extends GetxController {
   }
 
   uploadProfileData(String imageUrl, String firstName, String lastName,
-      String mobileNumber, String dob, String gender)async {
+      String mobileNumber, String dob, String gender) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
-   await _firestore.collection('users').doc(uid).set({
+    await _firestore.collection('users').doc(uid).set({
       'image': imageUrl,
       'first': firstName,
       'last': lastName,
@@ -98,7 +108,7 @@ class AuthController extends GetxController {
       'gender': gender
     }).then((value) {
       isProfileInformationLoading(false);
-      Get.offAll(() => const  HomeScreen());
+      Get.offAll(() => const HomeScreen());
     });
   }
 }

@@ -123,6 +123,7 @@ Widget buildCard(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
+              // date
               Container(
                 alignment: Alignment.center,
                 width: 41,
@@ -139,14 +140,16 @@ Widget buildCard(
                 ),
               ),
               const SizedBox(
-                width: 18,
+                width: 5,
               ),
+              // Event name
               Text(
                 text,
                 style:
                     const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               const Spacer(),
+              // book mark
               InkWell(
                 onTap: () {
                   if (eventSavedByUsers
@@ -503,10 +506,9 @@ EventsIJoined() {
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 41, height: 24,
+                                    width: 41,
+                                    height: 24,
                                     alignment: Alignment.center,
-                                    // padding: EdgeInsets.symmetric(
-                                    //     horizontal: 10, vertical: 7),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
                                       border: Border.all(
@@ -530,7 +532,7 @@ EventsIJoined() {
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
-                                      // color: AppColors.black,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],

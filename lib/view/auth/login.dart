@@ -3,14 +3,13 @@ import 'package:eventhub/view/auth/signin.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:eventhub/view/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../widgets/my_widgets.dart';
 import '../bottom_nav_bar/bottom_nav_view.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 import '../../widgets/text_field_input.dart';
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout.dart';
-import '../responsive/web_screen_layout.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,6 +21,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _forgetPasswordController =
+      TextEditingController();
   bool _isLoading = false;
 
   @override
@@ -129,7 +130,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // forgot password
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.defaultDialog(
+                        title: 'Forget Password?',
+                        content: Container(
+                          width: Get.width,
+                          child: Column(
+                            children: [
+                              myTextField(
+                                  bool: false,
+                                  icon: 'assets/lock.png',
+                                  text: 'enter your email...',
+                                  controller: _forgetPasswordController),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              MaterialButton(
+                                color: Colors.blue,
+                                onPressed: () {
+                                  AuthController().forgetPassword(
+                                      _forgetPasswordController.text.trim());
+                                },
+                                child: Text("Sent"),
+                                minWidth: double.infinity,
+                              )
+                            ],
+                          ),
+                        ));
+                  },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -144,36 +172,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 24,
                 ),
                 // google log in button
-                InkWell(
-                  // onTap: loginUser,
-                  child: Container(
-                    height: 45,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: !_isLoading
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/google.png"),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text("Continue with Google")
-                            ],
-                          )
-                        : const CircularProgressIndicator(
-                            color: primaryColor,
-                          ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
+                // InkWell(
+                //   // onTap: loginUser,
+                //   child: Container(
+                //     height: 45,
+                //     width: double.infinity,
+                //     alignment: Alignment.center,
+                //     padding: const EdgeInsets.symmetric(vertical: 12),
+                //     decoration: BoxDecoration(
+                //       border: Border.all(width: 1),
+                //       borderRadius: BorderRadius.circular(4),
+                //     ),
+                //     child: !_isLoading
+                //         ? Row(
+                //             mainAxisAlignment: MainAxisAlignment.center,
+                //             children: [
+                //               Image.asset("assets/google.png"),
+                //               const SizedBox(
+                //                 width: 10,
+                //               ),
+                //               const Text("Continue with Google")
+                //             ],
+                //           )
+                //         : const CircularProgressIndicator(
+                //             color: primaryColor,
+                //           ),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 12,
+                // ),
                 Flexible(
                   flex: 2,
                   child: Container(),

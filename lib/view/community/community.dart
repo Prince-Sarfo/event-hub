@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventhub/view/event_page/event_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Showing all the events registered in the app
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: Get.height,
+            // height: Get.height,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
@@ -36,8 +38,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   func: () {},
                   text: 'Community',
                 ),
+                // search bar
                 Container(
-                  height: 50,
+                  height: 45,
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
@@ -95,7 +98,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      hintText: 'Austin,USA',
+                      hintText: 'School of Business,KSB',
                       hintStyle: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
@@ -111,8 +114,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 10,
-                              mainAxisSpacing: 30,
-                              childAspectRatio: 0.53),
+                              mainAxisSpacing: 0,
+                              childAspectRatio: 0.35),
                       shrinkWrap: true,
                       itemCount: dataController.filteredEvents.length,
                       physics: const NeverScrollableScrollPhysics(),
@@ -134,7 +137,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           userName = '';
                         }
 
-                        print('Username is $userName');
+                        // print('Username is $userName');
 
                         try {
                           userImage = doc.get('image');
@@ -186,8 +189,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         }
 
                         return InkWell(
-                          onTap: () {},
-                          child: Container(
+                          onTap: () {
+                            Get.to(() => EventPageView(
+                                dataController.filteredEvents.value[i], doc));
+                          },
+                          child: SizedBox(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [

@@ -9,8 +9,6 @@ import '../utils/colors.dart';
 import '../utils/utils.dart';
 import '../../widgets/text_field_input.dart';
 
-
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -53,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) =>  ProfileScreen(),
+              builder: (context) => const AddProfile(),
             ),
           );
         }
@@ -151,40 +149,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(
                   height: 24,
-                ),
-                // google sign in button
-                InkWell(
-                  onTap: () {
-                    // user continue with google provider
-                    // AuthMethods().signInWithGoogle();
-                  },
-                  child: Container(
-                    height: 45,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: !_isLoading
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/google.png"),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text("Continue with Google")
-                            ],
-                          )
-                        : const CircularProgressIndicator(
-                            color: primaryColor,
-                          ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 Flexible(
                   flex: 2,

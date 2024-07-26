@@ -1,6 +1,8 @@
+import 'package:eventhub/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../view/notificationn_screen/notification_screen.dart';
 import 'my_widgets.dart';
 
 Widget CustomAppBar() {
@@ -10,7 +12,6 @@ Widget CustomAppBar() {
       children: [
         SizedBox(
           width: 116,
-          height: 17,
           child: myText(
               text: 'UniKonnect',
               style: const TextStyle(
@@ -24,23 +25,13 @@ Widget CustomAppBar() {
           height: 22,
           child: InkWell(
             onTap: () {
-              // Get.to(() => UserNotificationScreen());
+              Get.to(() => UserNotificationScreen());
             },
-            child: Image.asset('assets/Frame.png'),
+            child: Image.asset('assets/Frame.png', color: Colors.blue),
           ),
         ),
         SizedBox(
           width: Get.width * 0.04,
-        ),
-        InkWell(
-          onTap: () {},
-          child: SizedBox(
-            width: 22,
-            height: 20,
-            child: Image.asset(
-              'assets/menu.png',
-            ),
-          ),
         ),
       ],
     ),

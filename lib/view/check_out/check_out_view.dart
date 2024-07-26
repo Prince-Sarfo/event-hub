@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import '../../services/paystack/payment_page.dart';
+
 import '../../widgets/my_widgets.dart';
 
 class CheckOutView extends StatefulWidget {
@@ -161,14 +164,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              myText(
-                                text: 'may 15',
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.black,
-                                ),
-                              ),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -222,94 +217,8 @@ class _CheckOutViewState extends State<CheckOutView> {
                     fontSize: 16,
                   ),
                 ),
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 16,
-                          height: 12,
-                          child: Image.asset(
-                            'assets/Group1.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        myText(
-                          text: 'Add Card detail',
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Radio(
-                      value: 0,
-                      groupValue: selectedRadio,
-                      onChanged: (int? val) {
-                        setSelectedRadio(val!);
-                      },
-                    ),
-                  ],
-                ),
-                textField(text: 'Card Number'),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 48,
-                        margin: EdgeInsets.only(
-                          bottom: Get.height * 0.02,
-                        ),
-                        child: TextFormField(
-                          onTap: () {
-                            _selectDate(context);
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'Expiration date',
-                            contentPadding:
-                                const EdgeInsets.only(top: 10, left: 10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.04,
-                    ),
-                    Expanded(child: textField(text: 'Security Code'))
-                  ],
-                ),
                 SizedBox(
                   height: Get.height * 0.01,
-                ),
-                Row(
-                  children: [
-                    myText(
-                      text: 'Other option',
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const Spacer(),
-                    Radio(
-                      value: 1,
-                      groupValue: selectedRadio,
-                      onChanged: (int? value) {
-                        setState(() {
-                          setSelectedRadio(value!);
-                        });
-                      },
-                      activeColor: Colors.blue,
-                    ),
-                  ],
                 ),
                 const SizedBox(
                   height: 10,
@@ -326,7 +235,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                       ),
                     ),
                     myText(
-                      text: 'Paypal',
+                      text: 'PayStack',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
@@ -334,7 +243,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                     const Spacer(),
                     Radio(
-                      value: 2,
+                      value: 0,
                       groupValue: selectedRadio,
                       onChanged: (int? value) {
                         setState(() {
@@ -348,37 +257,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      width: 48,
-                      height: 34,
-                      child: Image.asset(
-                        'assets/strip.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    myText(
-                      text: 'Stripe',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    Radio(
-                      value: 3,
-                      groupValue: selectedRadio,
-                      onChanged: (int? value) {
-                        setState(() {
-                          setSelectedRadio(value!);
-                        });
-                      },
-                      activeColor: Colors.blue,
-                    ),
-                  ],
-                ),
                 const Divider(),
                 Row(
                   children: [
@@ -391,7 +269,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                     const Spacer(),
                     myText(
-                      text: '\$${widget.eventDoc!.get('price')}',
+                      text: 'GHS ${widget.eventDoc!.get('price')}',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -411,7 +289,8 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                     const Spacer(),
                     myText(
-                      text: '\$${int.parse(widget.eventDoc!.get('price')) + 2}',
+                      text:
+                          'GHS ${int.parse(widget.eventDoc!.get('price')) + 2}',
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
@@ -421,17 +300,18 @@ class _CheckOutViewState extends State<CheckOutView> {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
                   height: 50,
                   width: double.infinity,
                   child: elevatedButton(
-                    onpress: () {
-                      // if(selectedRadio == 3){
-                      //   makePayment(context,amount: '${int.parse(widget.eventDoc!.get('price')) + 2}',eventId: widget.eventDoc!.id);
-                      // }
+                    onpress: () async {
+                      // momo payment gateway
+                      if (selectedRadio == 0) {
+                        Get.to(() => PaymentPage());
+                      }
                     },
                     text: 'Book Now',
                   ),

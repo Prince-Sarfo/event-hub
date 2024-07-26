@@ -1,13 +1,16 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/data_controller.dart';
+import '../../services/notification_service.dart';
 import '../community/community.dart';
 import '../home/home.dart';
 
 import '../profile/add_profile.dart';
 import '../profile/profile.dart';
 import 'create_event.dart';
+import 'message_screen.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView({super.key});
@@ -29,8 +32,7 @@ class _BottomBarViewState extends State<BottomBarView> {
     const HomeScreen(),
     const CommunityScreen(),
     const CreateEventView(),
-    // MessageScreen(),
-    const Text('MessageScreen'),
+    MessageScreen(),
     const ProfileScreen()
   ];
 
@@ -39,11 +41,11 @@ class _BottomBarViewState extends State<BottomBarView> {
     // TODO: implement initState
     super.initState();
     Get.put(DataController(), permanent: true);
-    //     FirebaseMessaging.instance.getInitialMessage();
-    // FirebaseMessaging.onMessage.listen((message) {
+        FirebaseMessaging.instance.getInitialMessage();
+    FirebaseMessaging.onMessage.listen((message) {
 
-    //   LocalNotificationService.display(message);
-    // });
+      // LocalNotificationService.display(message);
+    });
 
     // LocalNotificationService.storeToken();
   }
