@@ -12,7 +12,6 @@ Widget CustomAppBar() {
       children: [
         SizedBox(
           width: 116,
-          height: 17,
           child: myText(
               text: 'UniKonnect',
               style: const TextStyle(
@@ -33,16 +32,6 @@ Widget CustomAppBar() {
         ),
         SizedBox(
           width: Get.width * 0.04,
-        ),
-        InkWell(
-          onTap: () {},
-          child: SizedBox(
-            width: 22,
-            height: 20,
-            child: Image.asset(
-              'assets/menu.png',
-            ),
-          ),
         ),
       ],
     ),

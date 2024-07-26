@@ -30,7 +30,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: Get.height,
+            // height: Get.height,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
@@ -114,8 +114,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 10,
-                              mainAxisSpacing: 30,
-                              childAspectRatio: 0.23),
+                              mainAxisSpacing: 0,
+                              childAspectRatio: 0.35),
                       shrinkWrap: true,
                       itemCount: dataController.filteredEvents.length,
                       physics: const NeverScrollableScrollPhysics(),
@@ -137,7 +137,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           userName = '';
                         }
 
-                        print('Username is $userName');
+                        // print('Username is $userName');
 
                         try {
                           userImage = doc.get('image');

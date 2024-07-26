@@ -455,359 +455,359 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     ],
                     //   ),
                     // ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(left: 20),
-                              width: 53,
-                              height: 53,
-                              child: Image.asset(
-                                'assets/Group 26.png',
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 15),
-                              width: 53,
-                              height: 53,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(36),
-                                color: Colors.white,
-                              ),
-                              child: const Image(
-                                  image: AssetImage('assets/Ellipse 984.png')),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 15),
-                              width: 53,
-                              height: 53,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(36),
-                                color: Colors.white,
-                              ),
-                              child: const Image(
-                                  image: AssetImage('assets/Ellipse 985.png')),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 15),
-                              width: 53,
-                              height: 53,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(36),
-                                color: Colors.white,
-                              ),
-                              child: const Image(
-                                  image: AssetImage('assets/Ellipse 986.png')),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 30, top: 10),
-                          child: const Text(
-                            'NEW',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: DefaultTabController(
-                        length: 2,
-                        initialIndex: 0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.black,
-                                    width: 0.01,
-                                  ),
-                                ),
-                              ),
-                              child: TabBar(
-                                indicatorColor: Colors.black,
-                                labelPadding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0,
-                                  vertical: 10,
-                                ),
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Tab(
-                                    icon: Image.asset("assets/ticket.png"),
-                                    height: 20,
-                                  ),
-                                  Tab(
-                                    icon: Image.asset("assets/Group 18600.png"),
-                                    height: 20,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: screenheight * 0.46,
-                              //height of TabBarView
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                    color: Colors.white,
-                                    width: 0.5,
-                                  ),
-                                ),
-                              ),
-                              child: TabBarView(
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: <Widget>[
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: ticket.length,
-                                      itemBuilder: (context, index) {
-                                        return
-                                            // InkWell(onTap: (){
-                                            // Get.to(()=>Detailproduct(record: popular[index],));
-                                            // },
-                                            Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 20),
-                                          width: 388,
-                                          height: 130,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.15),
-                                                spreadRadius: 2,
-                                                blurRadius: 3,
-                                                offset: const Offset(0,
-                                                    0), // changes position of shadow
-                                              ),
-                                            ],
-                                          ),
-                                          child: Container(
-                                            margin: const EdgeInsets.only(
-                                                top: 10, left: 10),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  width: 40,
-                                                  height: 41,
-                                                  padding:
-                                                      const EdgeInsets.all(1),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      6,
-                                                    ),
-                                                    border: Border.all(
-                                                      color:
-                                                          ticket[index].color!,
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      myText(
-                                                        text:
-                                                            ticket[index].range,
-                                                        style: const TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      myText(
-                                                        text:
-                                                            ticket[index].date,
-                                                        style: const TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      '${ticket[index].name}',
-                                                      style: const TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 15,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img1}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img2}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img3}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img4}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img5}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].img6}'),
-                                                          width: 27,
-                                                          height: 27,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          height: 30,
-                                                          child: Image.asset(
-                                                            ticket[index].heart,
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 1,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 10),
-                                                          child: Text(
-                                                            '${ticket[index].count}',
-                                                            style:
-                                                                const TextStyle(
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 23,
-                                                        ),
-                                                        Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].message}'),
-                                                          width: 16,
-                                                          height: 16,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 10),
-                                                          child: Text(
-                                                            '${ticket[index].rate}',
-                                                            style: const TextStyle(
-                                                                fontSize: 13,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 27,
-                                                        ),
-                                                        Container(
-                                                            child: Image(
-                                                          image: AssetImage(
-                                                              '${ticket[index].share}'),
-                                                          width: 15,
-                                                          height: 15,
-                                                        )),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      }),
-                                  Container(
-                                    child: const Center(
-                                      child: Text('Tab 2',
-                                          style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // const SizedBox(
+                    //   height: 40,
+                    // ),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Container(
+                    //           margin: const EdgeInsets.only(left: 20),
+                    //           width: 53,
+                    //           height: 53,
+                    //           child: Image.asset(
+                    //             'assets/Group 26.png',
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           margin: const EdgeInsets.only(left: 15),
+                    //           width: 53,
+                    //           height: 53,
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(36),
+                    //             color: Colors.white,
+                    //           ),
+                    //           child: const Image(
+                    //               image: AssetImage('assets/Ellipse 984.png')),
+                    //         ),
+                    //         Container(
+                    //           margin: const EdgeInsets.only(left: 15),
+                    //           width: 53,
+                    //           height: 53,
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(36),
+                    //             color: Colors.white,
+                    //           ),
+                    //           child: const Image(
+                    //               image: AssetImage('assets/Ellipse 985.png')),
+                    //         ),
+                    //         Container(
+                    //           margin: const EdgeInsets.only(left: 15),
+                    //           width: 53,
+                    //           height: 53,
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(36),
+                    //             color: Colors.white,
+                    //           ),
+                    //           child: const Image(
+                    //               image: AssetImage('assets/Ellipse 986.png')),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     Container(
+                    //       margin: const EdgeInsets.only(left: 30, top: 10),
+                    //       child: const Text(
+                    //         'NEW',
+                    //         style: TextStyle(
+                    //           fontSize: 12,
+                    //           color: Colors.grey,
+                    //           fontWeight: FontWeight.w500,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Container(
+                    //   margin: const EdgeInsets.symmetric(horizontal: 20),
+                    //   child: DefaultTabController(
+                    //     length: 2,
+                    //     initialIndex: 0,
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //       children: <Widget>[
+                    //         Container(
+                    //           decoration: const BoxDecoration(
+                    //             border: Border(
+                    //               bottom: BorderSide(
+                    //                 color: Colors.black,
+                    //                 width: 0.01,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           child: TabBar(
+                    //             indicatorColor: Colors.black,
+                    //             labelPadding: const EdgeInsets.symmetric(
+                    //               horizontal: 20.0,
+                    //               vertical: 10,
+                    //             ),
+                    //             unselectedLabelColor: Colors.black,
+                    //             tabs: [
+                    //               Tab(
+                    //                 icon: Image.asset("assets/ticket.png"),
+                    //                 height: 20,
+                    //               ),
+                    //               Tab(
+                    //                 icon: Image.asset("assets/Group 18600.png"),
+                    //                 height: 20,
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           height: screenheight * 0.46,
+                    //           //height of TabBarView
+                    //           decoration: const BoxDecoration(
+                    //             border: Border(
+                    //               top: BorderSide(
+                    //                 color: Colors.white,
+                    //                 width: 0.5,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           child: TabBarView(
+                    //             physics: const NeverScrollableScrollPhysics(),
+                    //             children: <Widget>[
+                    //               ListView.builder(
+                    //                   shrinkWrap: true,
+                    //                   physics:
+                    //                       const NeverScrollableScrollPhysics(),
+                    //                   scrollDirection: Axis.vertical,
+                    //                   itemCount: ticket.length,
+                    //                   itemBuilder: (context, index) {
+                    //                     return
+                    //                         // InkWell(onTap: (){
+                    //                         // Get.to(()=>Detailproduct(record: popular[index],));
+                    //                         // },
+                    //                         Container(
+                    //                       margin:
+                    //                           const EdgeInsets.only(top: 20),
+                    //                       width: 388,
+                    //                       height: 130,
+                    //                       decoration: BoxDecoration(
+                    //                         borderRadius:
+                    //                             BorderRadius.circular(15),
+                    //                         color: Colors.white,
+                    //                         boxShadow: [
+                    //                           BoxShadow(
+                    //                             color: Colors.grey
+                    //                                 .withOpacity(0.15),
+                    //                             spreadRadius: 2,
+                    //                             blurRadius: 3,
+                    //                             offset: const Offset(0,
+                    //                                 0), // changes position of shadow
+                    //                           ),
+                    //                         ],
+                    //                       ),
+                    //                       child: Container(
+                    //                         margin: const EdgeInsets.only(
+                    //                             top: 10, left: 10),
+                    //                         child: Row(
+                    //                           crossAxisAlignment:
+                    //                               CrossAxisAlignment.start,
+                    //                           children: [
+                    //                             Container(
+                    //                               width: 40,
+                    //                               height: 41,
+                    //                               padding:
+                    //                                   const EdgeInsets.all(1),
+                    //                               decoration: BoxDecoration(
+                    //                                 borderRadius:
+                    //                                     BorderRadius.circular(
+                    //                                   6,
+                    //                                 ),
+                    //                                 border: Border.all(
+                    //                                   color:
+                    //                                       ticket[index].color!,
+                    //                                 ),
+                    //                               ),
+                    //                               child: Column(
+                    //                                 mainAxisAlignment:
+                    //                                     MainAxisAlignment
+                    //                                         .spaceEvenly,
+                    //                                 children: [
+                    //                                   myText(
+                    //                                     text:
+                    //                                         ticket[index].range,
+                    //                                     style: const TextStyle(
+                    //                                       fontSize: 10,
+                    //                                       fontWeight:
+                    //                                           FontWeight.w500,
+                    //                                     ),
+                    //                                   ),
+                    //                                   myText(
+                    //                                     text:
+                    //                                         ticket[index].date,
+                    //                                     style: const TextStyle(
+                    //                                       fontSize: 10,
+                    //                                       fontWeight:
+                    //                                           FontWeight.w400,
+                    //                                     ),
+                    //                                   ),
+                    //                                 ],
+                    //                               ),
+                    //                             ),
+                    //                             const SizedBox(
+                    //                               width: 10,
+                    //                             ),
+                    //                             Column(
+                    //                               crossAxisAlignment:
+                    //                                   CrossAxisAlignment.start,
+                    //                               children: [
+                    //                                 Text(
+                    //                                   '${ticket[index].name}',
+                    //                                   style: const TextStyle(
+                    //                                     fontSize: 15,
+                    //                                     fontWeight:
+                    //                                         FontWeight.bold,
+                    //                                   ),
+                    //                                 ),
+                    //                                 const SizedBox(
+                    //                                   height: 15,
+                    //                                 ),
+                    //                                 Row(
+                    //                                   children: [
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img1}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img2}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img3}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img4}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img5}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].img6}'),
+                    //                                       width: 27,
+                    //                                       height: 27,
+                    //                                     ),
+                    //                                   ],
+                    //                                 ),
+                    //                                 const SizedBox(
+                    //                                   height: 10,
+                    //                                 ),
+                    //                                 Row(
+                    //                                   children: [
+                    //                                     Container(
+                    //                                       height: 30,
+                    //                                       child: Image.asset(
+                    //                                         ticket[index].heart,
+                    //                                       ),
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 1,
+                    //                                     ),
+                    //                                     Padding(
+                    //                                       padding:
+                    //                                           const EdgeInsets
+                    //                                               .only(
+                    //                                               left: 10),
+                    //                                       child: Text(
+                    //                                         '${ticket[index].count}',
+                    //                                         style:
+                    //                                             const TextStyle(
+                    //                                           fontSize: 13,
+                    //                                           fontWeight:
+                    //                                               FontWeight
+                    //                                                   .bold,
+                    //                                         ),
+                    //                                       ),
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 23,
+                    //                                     ),
+                    //                                     Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].message}'),
+                    //                                       width: 16,
+                    //                                       height: 16,
+                    //                                     ),
+                    //                                     Padding(
+                    //                                       padding:
+                    //                                           const EdgeInsets
+                    //                                               .only(
+                    //                                               left: 10),
+                    //                                       child: Text(
+                    //                                         '${ticket[index].rate}',
+                    //                                         style: const TextStyle(
+                    //                                             fontSize: 13,
+                    //                                             fontWeight:
+                    //                                                 FontWeight
+                    //                                                     .bold),
+                    //                                       ),
+                    //                                     ),
+                    //                                     const SizedBox(
+                    //                                       width: 27,
+                    //                                     ),
+                    //                                     Container(
+                    //                                         child: Image(
+                    //                                       image: AssetImage(
+                    //                                           '${ticket[index].share}'),
+                    //                                       width: 15,
+                    //                                       height: 15,
+                    //                                     )),
+                    //                                   ],
+                    //                                 ),
+                    //                               ],
+                    //                             ),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     );
+                    //                   }),
+                    //               Container(
+                    //                 child: const Center(
+                    //                   child: Text('Tab 2',
+                    //                       style: TextStyle(
+                    //                           fontSize: 22,
+                    //                           fontWeight: FontWeight.bold)),
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
