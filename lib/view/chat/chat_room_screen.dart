@@ -12,6 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:flutter/foundation.dart' as foundation;
+
 import '../../controller/data_controller.dart';
 
 import '../../services/notification_service.dart';
@@ -314,38 +316,41 @@ class _ChatState extends State<Chat> {
                     ],
                   ),
                 ),
-                // Offstage(
-                //   offstage: !isEmojiPickerOpen,
-                //   child: SizedBox(
-                //     height: 230,
-                //     child: EmojiPicker(
-                //         onEmojiSelected: (Category category, Emoji emoji) {
-                //           _onEmojiSelected(emoji);
-                //         },
-                //         onBackspacePressed: _onBackspacePressed,
-                //         config: Config(
-                //             columns: 7,
-                //             // Issue: https://github.com/flutter/flutter/issues/28894
-                //             emojiSizeMax: 32 * (Platform.isIOS ? 1.30 : 1.0),
-                //             verticalSpacing: 0,
-                //             horizontalSpacing: 0,
-                //             initCategory: Category.RECENT,
-                //             bgColor: const Color(0xFFF2F2F2),
-                //             indicatorColor: Colors.blue,
-                //             iconColor: Colors.grey,
-                //             iconColorSelected: Colors.blue,
-                //             progressIndicatorColor: Colors.blue,
-                //             backspaceColor: Colors.blue,
-                //             showRecentsTab: true,
-                //             recentsLimit: 28,
-                //             noRecentsText: 'No Recents',
-                //             noRecentsStyle: const TextStyle(
-                //                 fontSize: 20, color: Colors.black26),
-                //             tabIndicatorAnimDuration: kTabScrollDuration,
-                //             categoryIcons: const CategoryIcons(),
-                //             buttonMode: ButtonMode.MATERIAL)),
-                //   ),
-                // ),
+                Offstage(
+                  offstage: !isEmojiPickerOpen,
+                  child: const SizedBox(
+                    height: 230,
+                    // child: EmojiPicker(
+                    //     onEmojiSelected: (Category category, Emoji emoji) {
+                    //       _onEmojiSelected(emoji);
+                    //     },
+                    //     onBackspacePressed: _onBackspacePressed,
+                    //     config: Config(
+                    //         columns: 7,
+                    //         // Issue: https://github.com/flutter/flutter/issues/28894
+                    //         emojiSizeMax: 32 * (Platform.isIOS ? 1.30 : 1.0),
+                    //         verticalSpacing: 0,
+                    //         horizontalSpacing: 0,
+                    //         initCategory: Category.RECENT,
+                    //         bgColor: const Color(0xFFF2F2F2),
+                    //         indicatorColor: Colors.blue,
+                    //         iconColor: Colors.grey,
+                    //         iconColorSelected: Colors.blue,
+                    //         progressIndicatorColor: Colors.blue,
+                    //         backspaceColor: Colors.blue,
+                    //         showRecentsTab: true,
+                    //         recentsLimit: 28,
+                    //         noRecentsText: 'No Recents',
+                    //         noRecentsStyle: const TextStyle(
+                    //             fontSize: 20, color: Colors.black26),
+                    //         tabIndicatorAnimDuration: kTabScrollDuration,
+                    //         categoryIcons: const CategoryIcons(),
+                    //         buttonMode: ButtonMode.MATERIAL)),
+                    
+
+                    // my emoji
+                 
+                  ))
               ],
             ),
           ),
