@@ -317,40 +317,42 @@ class _ChatState extends State<Chat> {
                   ),
                 ),
                 Offstage(
-                  offstage: !isEmojiPickerOpen,
-                  child: const SizedBox(
-                    height: 230,
-                    // child: EmojiPicker(
-                    //     onEmojiSelected: (Category category, Emoji emoji) {
-                    //       _onEmojiSelected(emoji);
-                    //     },
-                    //     onBackspacePressed: _onBackspacePressed,
-                    //     config: Config(
-                    //         columns: 7,
-                    //         // Issue: https://github.com/flutter/flutter/issues/28894
-                    //         emojiSizeMax: 32 * (Platform.isIOS ? 1.30 : 1.0),
-                    //         verticalSpacing: 0,
-                    //         horizontalSpacing: 0,
-                    //         initCategory: Category.RECENT,
-                    //         bgColor: const Color(0xFFF2F2F2),
-                    //         indicatorColor: Colors.blue,
-                    //         iconColor: Colors.grey,
-                    //         iconColorSelected: Colors.blue,
-                    //         progressIndicatorColor: Colors.blue,
-                    //         backspaceColor: Colors.blue,
-                    //         showRecentsTab: true,
-                    //         recentsLimit: 28,
-                    //         noRecentsText: 'No Recents',
-                    //         noRecentsStyle: const TextStyle(
-                    //             fontSize: 20, color: Colors.black26),
-                    //         tabIndicatorAnimDuration: kTabScrollDuration,
-                    //         categoryIcons: const CategoryIcons(),
-                    //         buttonMode: ButtonMode.MATERIAL)),
-                    
+                    offstage: !isEmojiPickerOpen,
+                    child: SizedBox(
+                        height: 230,
+                        child: EmojiPicker(
+                          onEmojiSelected: (Category? category, Emoji emoji) {
+                            // Do something when emoji is tapped (optional)
+                            _onEmojiSelected(emoji);
+                            FocusScope.of(context).unfocus();
+                          },
+                          onBackspacePressed: _onBackspacePressed,
+                          // Do something when the user taps the backspace button (optional)
+                          // Set it to null to hide the Backspace-Button
 
-                    // my emoji
-                 
-                  ))
+                          // pass here the same [TextEditingController] that is connected to your input field, usually a [TextFormField]
+                          config: Config(
+                            height: 256,
+                            checkPlatformCompatibility: true,
+                            emojiViewConfig: EmojiViewConfig(
+                              // Issue: https://github.com/flutter/flutter/issues/28894
+                              emojiSizeMax: 28 *
+                                  (foundation.defaultTargetPlatform ==
+                                          TargetPlatform.iOS
+                                      ? 1.20
+                                      : 1.0),
+                            ),
+                            swapCategoryAndBottomBar: false,
+                            skinToneConfig: const SkinToneConfig(),
+                            categoryViewConfig: const CategoryViewConfig(),
+                            bottomActionBarConfig:
+                                const BottomActionBarConfig(),
+                            searchViewConfig: const SearchViewConfig(),
+                          ),
+                        )
+
+                        // my emoji
+                        ))
               ],
             ),
           ),

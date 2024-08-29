@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: Get.height * 0.02,
                 ),
                 EventsFeed(),
-                Obx(()=> dataController.isUsersLoading.value? Center(child: CircularProgressIndicator(),) : EventsIJoined())
+                Obx(()=> dataController.isUsersLoading.value? const Center(child: CircularProgressIndicator(),) : EventsIJoined())
               ],
             ),
           ),

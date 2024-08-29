@@ -1,11 +1,17 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventhub/view/bottom_nav_bar/student_nav_view.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as Path;
+
+import '../view/organizer_page/organizer_page.dart';
+
+enum UserType { organizer, student }
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -97,18 +103,38 @@ class AuthController extends GetxController {
   }
 
   uploadProfileData(String imageUrl, String firstName, String lastName,
-      String mobileNumber, String dob, String gender) async {
+      String mobileNumber, String dob, String gender, String userType) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
     await _firestore.collection('users').doc(uid).set({
       'image': imageUrl,
       'first': firstName,
       'last': lastName,
+      'mobileNumber': mobileNumber,
       'dob': dob,
-      'gender': gender
+      'gender': gender,
+      'userType': userType,
     }).then((value) {
       isProfileInformationLoading(false);
-      Get.offAll(() => const HomeScreen());
+      // Get.offAll(() => const HomeScreen());
+      // Get.offAll(() => const StudentNavView());
+      Get.offAll(() => const OrganizerPage());
+
+      // Navigate to the appropriate page
+      // if (userType == UserType.organizer) {
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => OrganizerPage()),
+      // );
+      // Get.to(() => const OrganizerPage());
+      // } else if (userType == UserType.student) {
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //       builder: (context) => StudentPage()),
+      // );
+      // Get.offAll(() => const StudentNavView());
+      // }
     });
   }
 }

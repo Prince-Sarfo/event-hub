@@ -36,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _isLoading = true;
     });
 
+// check if password is same as confirm password
     if (_passwordController.text == _confirmController.text) {
 // sign up user using our auth methods
       String res = await AuthController().signUpUser(

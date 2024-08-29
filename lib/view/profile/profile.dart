@@ -69,9 +69,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   initState() {
     super.initState();
     dataController = Get.find<DataController>();
-
     firstNameController.text = dataController!.myDocument!.get('first');
     lastNameController.text = dataController!.myDocument!.get('last');
+    // try {
+    // } catch (e) {
+    //   // const CircularProgressIndicator();
+    //   firstNameController.text = '';
+    // }
+    // try {
+    // } catch (e) {
+    //   lastNameController.text = '';
+    // }
 
     try {
       descriptionController.text = dataController!.myDocument!.get('desc');

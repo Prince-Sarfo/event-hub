@@ -9,6 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../controller/auth_controller.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_widgets.dart';
+import '../organizer_page/organizer_page.dart';
+
+enum UserType { organizer, student }
 
 class AddProfile extends StatefulWidget {
   const AddProfile({super.key});
@@ -18,6 +21,8 @@ class AddProfile extends StatefulWidget {
 
 class _AddProfile extends State<AddProfile> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  UserType? _selectedUserType;
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -91,7 +96,7 @@ class _AddProfile extends State<AddProfile> {
   }
 
   File? profileImage;
-
+// gender
   void setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
@@ -99,6 +104,16 @@ class _AddProfile extends State<AddProfile> {
   }
 
   int selectedRadio = 0;
+
+// organizer or student
+
+  void setSelectedRadioUser(int val) {
+    setState(() {
+      selectedRadioUser = val;
+    });
+  }
+
+  int selectedRadioUser = 2;
 
   AuthController? authController;
 
@@ -239,6 +254,7 @@ class _AddProfile extends State<AddProfile> {
                     ),
                   ),
                 ),
+                //  Gender selection
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -277,6 +293,29 @@ class _AddProfile extends State<AddProfile> {
                     ),
                   ],
                 ),
+
+                // organizer or student
+                RadioListTile<UserType>(
+                  title: const Text('Organizer'),
+                  value: UserType.organizer,
+                  groupValue: _selectedUserType,
+                  onChanged: (UserType? value) {
+                    setState(() {
+                      _selectedUserType = value;
+                    });
+                  },
+                ),
+                RadioListTile<UserType>(
+                  title: const Text('Student'),
+                  value: UserType.student,
+                  groupValue: _selectedUserType,
+                  onChanged: (UserType? value) {
+                    setState(() {
+                      _selectedUserType = value;
+                    });
+                  },
+                ),
+
                 Obx(() => authController!.isProfileInformationLoading.value
                     ? const Center(
                         child: CircularProgressIndicator(),
@@ -307,25 +346,41 @@ class _AddProfile extends State<AddProfile> {
                               return null;
                             }
 
+                            if (_selectedUserType == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Please select a user type')),
+                              );
+                            }
+
                             authController!.isProfileInformationLoading(true);
 
                             String imageUrl = await authController!
                                 .uploadImageToFirebaseStorage(profileImage!);
 
                             await authController!.uploadProfileData(
-                                imageUrl,
-                                firstNameController.text.trim(),
-                                lastNameController.text.trim(),
-                                mobileNumberController.text.trim(),
-                                dob.text.trim(),
-                                selectedRadio == 0 ? "Male" : "Female");
+                              imageUrl,
+                              firstNameController.text.trim(),
+                              lastNameController.text.trim(),
+                              mobileNumberController.text.trim(),
+                              dob.text.trim(),
+                              selectedRadio == 0 ? "Male" : "Female",
+                              UserType == UserType.organizer
+                                  ? 'organizer'
+                                  : 'student',
+                            );
+
+
+
+
+                            // end
                           },
                         ),
                       )),
                 SizedBox(
                   height: Get.height * 0.03,
                 ),
-                Container(
+                SizedBox(
                     width: Get.width * 0.8,
                     child: RichText(
                       textAlign: TextAlign.center,

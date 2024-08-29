@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventhub/controller/auth_controller.dart';
+import 'package:eventhub/view/bottom_nav_bar/student_nav_view.dart';
 import 'package:eventhub/view/home/home.dart';
 import 'package:eventhub/view/profile/add_profile.dart';
 
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
   // This is the root of the app
   @override
   Widget build(BuildContext context) {
+    DocumentSnapshot? eventData;
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -65,7 +68,41 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasData) {
-                  return const BottomBarView();
+                  String uid = snapshot.data!.uid;
+
+                  return FutureBuilder<DocumentSnapshot>(
+                    future: FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(uid)
+                        .get(),
+                    builder: (context, userSnapshot) {
+                      if (userSnapshot.connectionState ==
+                          ConnectionState.done) {
+                        if (userSnapshot.hasData && userSnapshot.data!.exists) {
+                          // Get the userType field from the Firestore document
+                          String userType = userSnapshot.data!['userType'];
+
+                          if (userType == 'organizer') {
+                            return const BottomBarView();
+                          } else if (userType == 'student') {
+                            return const StudentNavView();
+                          } else {
+                            return const Center(
+                                child: Text('Unknown user type'));
+                          }
+                        } else {
+                          return const Center(
+                              child: Text('User document does not exist'));
+                        }
+                      } else if (userSnapshot.hasError) {
+                        return Center(
+                            child: Text('Error: ${userSnapshot.error}'));
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  );
+                  // end
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text('${snapshot.error}'),

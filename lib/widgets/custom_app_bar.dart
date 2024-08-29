@@ -1,11 +1,13 @@
 import 'package:eventhub/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:eventhub/controller/auth_controller.dart';
 
 import '../view/notificationn_screen/notification_screen.dart';
 import 'my_widgets.dart';
 
 Widget CustomAppBar() {
+  final authController = AuthController.new();
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 15),
     child: Row(
@@ -33,6 +35,9 @@ Widget CustomAppBar() {
         SizedBox(
           width: Get.width * 0.04,
         ),
+        IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => authController.logOut())
       ],
     ),
   );
